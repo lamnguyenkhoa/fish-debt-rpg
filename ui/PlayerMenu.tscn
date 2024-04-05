@@ -1,0 +1,161 @@
+[gd_scene load_steps=3 format=3 uid="uid://mf0qldclxjpr"]
+
+[ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="1_83j4q"]
+[ext_resource type="Script" path="res://ui/player_menu.gd" id="1_widhm"]
+
+[node name="PlayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 87.0
+offset_top = 173.0
+offset_right = 512.0
+offset_bottom = 600.0
+script = ExtResource("1_widhm")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+
+[node name="Status" type="Control" parent="TabContainer"]
+layout_mode = 2
+
+[node name="Avatar" type="TextureRect" parent="TabContainer/Status"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 36.0
+offset_right = 97.0
+offset_bottom = 100.0
+texture = ExtResource("1_83j4q")
+
+[node name="HealthBar" type="ProgressBar" parent="TabContainer/Status"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 36.0
+offset_right = 370.0
+offset_bottom = 63.0
+value = 50.0
+
+[node name="StaminaBar" type="ProgressBar" parent="TabContainer/Status"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 76.0
+offset_right = 370.0
+offset_bottom = 103.0
+value = 50.0
+
+[node name="Statbox" type="VBoxContainer" parent="TabContainer/Status"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 116.0
+offset_right = 145.0
+offset_bottom = 302.0
+
+[node name="ForLabel" type="Label" parent="TabContainer/Status/Statbox"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "FOR: 20"
+
+[node name="IntLabel" type="Label" parent="TabContainer/Status/Statbox"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "INT: 20"
+
+[node name="StrLabel" type="Label" parent="TabContainer/Status/Statbox"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "STR: 20"
+
+[node name="HarLabel" type="Label" parent="TabContainer/Status/Statbox"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "HAR: 20"
+
+[node name="YeeLabe" type="Label" parent="TabContainer/Status/Statbox"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "YEE: 20"
+
+[node name="StatDesc" type="Label" parent="TabContainer/Status"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 124.0
+offset_right = 401.0
+offset_bottom = 308.0
+autowrap_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="TabContainer/Status"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 324.0
+offset_right = 133.0
+offset_bottom = 347.0
+theme_override_font_sizes/font_size = 20
+text = "Money: 20000$"
+
+[node name="OwnedMoneyLabel" type="Label" parent="TabContainer/Status"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 356.0
+offset_right = 193.0
+offset_bottom = 379.0
+theme_override_font_sizes/font_size = 20
+text = "Owned money: 20000$"
+horizontal_alignment = 2
+
+[node name="Inventory" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Inventory"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 20.0
+offset_right = 185.0
+offset_bottom = 364.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Inventory/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Button" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fish-soda"
+
+[node name="Label2" type="Button" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fish-soda"
+
+[node name="Label3" type="Button" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fish-soda"
+
+[node name="Label4" type="Button" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fish-soda"
+
+[node name="Option" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 393.0
+offset_top = -13.0
+offset_right = 419.0
+offset_bottom = 18.0
+text = "X"
+
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/ForLabel" to="." method="_on_for_label_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/IntLabel" to="." method="_on_int_label_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/StrLabel" to="." method="_on_str_label_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/HarLabel" to="." method="_on_har_label_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/YeeLabe" to="." method="_on_yee_labe_mouse_entered"]
