@@ -12,7 +12,7 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4qfei"]
 noise_type = 0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ej4rm"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bdlnd"]
 seamless = true
 noise = SubResource("FastNoiseLite_4qfei")
 
@@ -22,7 +22,7 @@ shader_parameter/refraction_stretch = Vector2(1, 1)
 shader_parameter/refraction_strength = 0.02
 shader_parameter/water_tint = Color(0.2, 0.6, 1, 0)
 shader_parameter/speed = 0.02
-shader_parameter/refraction_map = SubResource("NoiseTexture2D_ej4rm")
+shader_parameter/refraction_map = SubResource("NoiseTexture2D_bdlnd")
 
 [node name="MainGame" type="Node2D"]
 
@@ -49,7 +49,7 @@ position = Vector2(674, 412)
 position = Vector2(1080, 368)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
-visible = false
+position = Vector2(664, 152)
 position_smoothing_enabled = true
 script = ExtResource("3_bmpse")
 follow_target = NodePath("../YSortGroup/PlayerEviota")
@@ -104,3 +104,29 @@ text = "Day left: 20"
 horizontal_alignment = 1
 
 [node name="PlayerMenu" parent="CanvasLayer/GameUI" instance=ExtResource("5_sr2f2")]
+
+[node name="BotBanner" type="TextureRect" parent="CanvasLayer/GameUI"]
+self_modulate = Color(0, 0, 0, 0.360784)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_upago")
+expand_mode = 1
+
+[node name="DayLabel" type="Label" parent="CanvasLayer/GameUI/BotBanner"]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -675.0
+offset_top = 8.0
+offset_right = -75.0
+offset_bottom = 30.0
+grow_horizontal = 2
+text = "WASD: move | Tab: open menu"

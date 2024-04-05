@@ -1,8 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://07qmqoaglybr"]
+[gd_scene load_steps=12 format=3 uid="uid://07qmqoaglybr"]
 
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="1_1t8w5"]
 [ext_resource type="Texture2D" uid="uid://duetdfxroa10x" path="res://asset/sprite/ui/menu_background.png" id="1_o4sxj"]
+[ext_resource type="Script" path="res://scene/main_menu.gd" id="1_weaub"]
+[ext_resource type="PackedScene" uid="uid://c0xitnvds1848" path="res://scene/MainGame.tscn" id="2_lt16c"]
 [ext_resource type="Texture2D" uid="uid://s1mu3i6uehp7" path="res://asset/sprite/ui/eviota_face_front.png" id="3_vpsc1"]
+[ext_resource type="Shader" path="res://shader/water_effect.gdshader" id="4_yjjb2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nicmk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oh2es"]
+seamless = true
+noise = SubResource("FastNoiseLite_nicmk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f1xe0"]
+shader = ExtResource("4_yjjb2")
+shader_parameter/refraction_stretch = Vector2(0.25, 0.25)
+shader_parameter/refraction_strength = 0.02
+shader_parameter/water_tint = Color(0.2, 0.6, 1, 0.1)
+shader_parameter/speed = 0.02
+shader_parameter/refraction_map = SubResource("NoiseTexture2D_oh2es")
 
 [sub_resource type="Animation" id="Animation_lpjxd"]
 resource_name = "idle"
@@ -27,6 +44,8 @@ _data = {
 }
 
 [node name="MainMenu" type="Node2D"]
+script = ExtResource("1_weaub")
+main_game_scene = ExtResource("2_lt16c")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -38,6 +57,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_o4sxj")
+
+[node name="FishFace" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -192.033
+offset_right = 183.0
+offset_bottom = 159.963
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(180, 176)
+texture = ExtResource("3_vpsc1")
+
+[node name="WaterShader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_f1xe0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label2" type="Label" parent="CanvasLayer"]
 self_modulate = Color(0, 0, 0, 0.556863)
@@ -57,21 +99,6 @@ offset_bottom = 161.0
 theme_override_fonts/font = ExtResource("1_1t8w5")
 theme_override_font_sizes/font_size = 80
 text = "Fish debt RPG"
-
-[node name="FishFace" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -183.0
-offset_top = -185.707
-offset_right = 183.0
-offset_bottom = 166.292
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(180, 176)
-texture = ExtResource("3_vpsc1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
@@ -99,7 +126,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_1t8w5")
 theme_override_font_sizes/font_size = 40
-text = "Continue"
+text = "???"
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
@@ -113,3 +140,6 @@ libraries = {
 "": SubResource("AnimationLibrary_utnjn")
 }
 autoplay = "idle"
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
