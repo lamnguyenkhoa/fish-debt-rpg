@@ -6,6 +6,20 @@ class_name PlayerMenu
 
 func _ready():
 	stat_desc.text = ""
+	GameManager.player_menu = self
+	close_menu()
+
+func toggle_menu():
+	if visible:
+		close_menu()
+	else:
+		open_menu()
+
+func open_menu():
+	visible = true
+
+func close_menu():
+	visible = false
 
 func _on_for_label_mouse_entered() -> void:
 	stat_desc.text = "Fortitude.\n\nIndicate fish's resistance, both mentally and physically."
@@ -17,7 +31,10 @@ func _on_str_label_mouse_entered() -> void:
 	stat_desc.text = "Strength.\n\nIndicate fish's physical prowess. Strong fish make more money with blue-gill jobs and attack other fishes more effective."
 
 func _on_har_label_mouse_entered() -> void:
-	stat_desc.text = "Harmony.\n\nIndicate fish's flexibility and adaptability. Harmonic fish is a charisma fish. Also it's easier for fish to blend into the environment."
+	stat_desc.text = "Harmony.\n\nIndicate fish's flexibility and adaptability. Harmonic fish is charismatic fish. Also it's easier for fish to blend into the environment."
 
 func _on_yee_labe_mouse_entered() -> void:
 	stat_desc.text = "Yeet.\n\nIndicate fish's quickness. Yeety fish is fast fish."
+
+func _on_close_button_pressed() -> void:
+	close_menu()

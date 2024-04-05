@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cts32tvdsnmfx"
-path="res://.godot/imported/sand.png-7ba5552a36212346b738f95ec6e2c0ac.ctex"
+path="res://.godot/imported/sand.png-31fad6bc37b4a5461be81918571d3bef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/sprite/background/sand.png"
-dest_files=["res://.godot/imported/sand.png-7ba5552a36212346b738f95ec6e2c0ac.ctex"]
+source_file="res://asset/sprite/building/sand.png"
+dest_files=["res://.godot/imported/sand.png-31fad6bc37b4a5461be81918571d3bef.ctex"]
 
 [params]
 

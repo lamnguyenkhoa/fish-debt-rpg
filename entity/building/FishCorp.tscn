@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://yhpp75dbteo1"]
+
+[ext_resource type="Texture2D" uid="uid://0phdv304e2jj" path="res://asset/sprite/building/company.png" id="1_id531"]
+[ext_resource type="Script" path="res://entity/building/fish_corp.gd" id="1_o4ttt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_valto"]
+size = Vector2(296, 224)
+
+[node name="FishCorpCompany" type="StaticBody2D"]
+script = ExtResource("1_o4ttt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_id531")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 56)
+shape = SubResource("RectangleShape2D_valto")
+debug_color = Color(0.701961, 0, 0.0745098, 0.419608)

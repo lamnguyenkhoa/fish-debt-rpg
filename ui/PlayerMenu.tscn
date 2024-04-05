@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://mf0qldclxjpr"]
+[gd_scene load_steps=4 format=3 uid="uid://mf0qldclxjpr"]
 
-[ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="1_83j4q"]
 [ext_resource type="Script" path="res://ui/player_menu.gd" id="1_widhm"]
+[ext_resource type="Texture2D" uid="uid://dfgijvecgklle" path="res://asset/sprite/ui/eviota_avatar.png" id="2_bt7mv"]
+[ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="3_osxo0"]
 
 [node name="PlayerMenu" type="Control"]
 layout_mode = 3
@@ -9,7 +10,7 @@ anchors_preset = 0
 offset_left = 87.0
 offset_top = 173.0
 offset_right = 512.0
-offset_bottom = 600.0
+offset_bottom = 576.0
 script = ExtResource("1_widhm")
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -19,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_osxo0")
 tab_alignment = 1
 
 [node name="Status" type="Control" parent="TabContainer"]
@@ -26,13 +28,14 @@ layout_mode = 2
 
 [node name="Avatar" type="TextureRect" parent="TabContainer/Status"]
 layout_mode = 0
-offset_left = 33.0
-offset_top = 36.0
-offset_right = 97.0
-offset_bottom = 100.0
-texture = ExtResource("1_83j4q")
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 105.0
+offset_bottom = 108.0
+texture = ExtResource("2_bt7mv")
 
 [node name="HealthBar" type="ProgressBar" parent="TabContainer/Status"]
+self_modulate = Color(1, 0.0352941, 0, 1)
 layout_mode = 0
 offset_left = 145.0
 offset_top = 36.0
@@ -41,6 +44,7 @@ offset_bottom = 63.0
 value = 50.0
 
 [node name="StaminaBar" type="ProgressBar" parent="TabContainer/Status"]
+self_modulate = Color(1, 0.894118, 0.0470588, 1)
 layout_mode = 0
 offset_left = 145.0
 offset_top = 76.0
@@ -58,31 +62,36 @@ offset_bottom = 302.0
 [node name="ForLabel" type="Label" parent="TabContainer/Status/Statbox"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_osxo0")
+theme_override_font_sizes/font_size = 20
 text = "FOR: 20"
 
 [node name="IntLabel" type="Label" parent="TabContainer/Status/Statbox"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_osxo0")
+theme_override_font_sizes/font_size = 20
 text = "INT: 20"
 
 [node name="StrLabel" type="Label" parent="TabContainer/Status/Statbox"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_osxo0")
+theme_override_font_sizes/font_size = 20
 text = "STR: 20"
 
 [node name="HarLabel" type="Label" parent="TabContainer/Status/Statbox"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_osxo0")
+theme_override_font_sizes/font_size = 20
 text = "HAR: 20"
 
 [node name="YeeLabe" type="Label" parent="TabContainer/Status/Statbox"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_osxo0")
+theme_override_font_sizes/font_size = 20
 text = "YEE: 20"
 
 [node name="StatDesc" type="Label" parent="TabContainer/Status"]
@@ -91,26 +100,28 @@ offset_left = 153.0
 offset_top = 124.0
 offset_right = 401.0
 offset_bottom = 308.0
+theme_override_font_sizes/font_size = 20
 autowrap_mode = 2
 
 [node name="MoneyLabel" type="Label" parent="TabContainer/Status"]
 layout_mode = 0
 offset_left = 17.0
-offset_top = 324.0
-offset_right = 133.0
-offset_bottom = 347.0
+offset_top = 302.0
+offset_right = 177.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("3_osxo0")
 theme_override_font_sizes/font_size = 20
-text = "Money: 20000$"
+text = "Money: 100$"
 
-[node name="OwnedMoneyLabel" type="Label" parent="TabContainer/Status"]
+[node name="DebtMoneyLabel" type="Label" parent="TabContainer/Status"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 356.0
-offset_right = 193.0
-offset_bottom = 379.0
+offset_left = 41.0
+offset_top = 334.0
+offset_right = 293.0
+offset_bottom = 362.0
+theme_override_fonts/font = ExtResource("3_osxo0")
 theme_override_font_sizes/font_size = 20
-text = "Owned money: 20000$"
-horizontal_alignment = 2
+text = "Debt money: 20000$"
 
 [node name="Inventory" type="Control" parent="TabContainer"]
 visible = false
@@ -146,12 +157,12 @@ text = "Fish-soda"
 visible = false
 layout_mode = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="CloseButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 393.0
-offset_top = -13.0
+offset_top = -5.0
 offset_right = 419.0
-offset_bottom = 18.0
+offset_bottom = 19.0
 text = "X"
 
 [connection signal="mouse_entered" from="TabContainer/Status/Statbox/ForLabel" to="." method="_on_for_label_mouse_entered"]
@@ -159,3 +170,4 @@ text = "X"
 [connection signal="mouse_entered" from="TabContainer/Status/Statbox/StrLabel" to="." method="_on_str_label_mouse_entered"]
 [connection signal="mouse_entered" from="TabContainer/Status/Statbox/HarLabel" to="." method="_on_har_label_mouse_entered"]
 [connection signal="mouse_entered" from="TabContainer/Status/Statbox/YeeLabe" to="." method="_on_yee_labe_mouse_entered"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

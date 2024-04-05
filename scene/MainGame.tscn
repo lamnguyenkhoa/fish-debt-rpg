@@ -1,26 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=8 format=3 uid="uid://c0xitnvds1848"]
 
-[ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/background/sand.png" id="1_0tepv"]
+[ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="PackedScene" uid="uid://dtxmmajk5ntsw" path="res://player/PlayerEviota.tscn" id="2_0uhqw"]
 [ext_resource type="Script" path="res://scene/camera_follow.gd" id="3_bmpse"]
+[ext_resource type="PackedScene" uid="uid://yhpp75dbteo1" path="res://entity/building/FishCorp.tscn" id="3_i16ob"]
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="4_upago"]
 [ext_resource type="PackedScene" uid="uid://mf0qldclxjpr" path="res://ui/PlayerMenu.tscn" id="5_sr2f2"]
+[ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="6_r0bny"]
 
 [node name="MainGame" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(673, 365)
-scale = Vector2(2, 2)
+[node name="Environment" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(496, 280)
 texture = ExtResource("1_0tepv")
+region_enabled = true
+region_rect = Rect2(0, 0, 4000, 2000)
 
-[node name="PlayerEviota" parent="." instance=ExtResource("2_0uhqw")]
+[node name="YSortGroup" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PlayerEviota" parent="YSortGroup" instance=ExtResource("2_0uhqw")]
 position = Vector2(674, 412)
+
+[node name="FishCorpCompany" parent="YSortGroup" instance=ExtResource("3_i16ob")]
+position = Vector2(1080, 368)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
 visible = false
 position_smoothing_enabled = true
 script = ExtResource("3_bmpse")
-follow_target = NodePath("../PlayerEviota")
+follow_target = NodePath("../YSortGroup/PlayerEviota")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,16 +51,34 @@ offset_bottom = 64.0
 grow_horizontal = 2
 texture = ExtResource("4_upago")
 
-[node name="Label" type="Label" parent="CanvasLayer/GameUI/TopBanner"]
+[node name="GameTitle" type="Label" parent="CanvasLayer/GameUI/TopBanner"]
+self_modulate = Color(0, 0, 0, 0.572549)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -65.5
-offset_right = 65.5
+offset_left = -675.0
+offset_right = -478.0
 offset_bottom = 34.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_r0bny")
+theme_override_font_sizes/font_size = 24
+text = "Fish Debt RPG"
+horizontal_alignment = 1
+
+[node name="DayLabel" type="Label" parent="CanvasLayer/GameUI/TopBanner"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -675.0
+offset_top = 24.0
+offset_right = -506.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_r0bny")
 theme_override_font_sizes/font_size = 24
 text = "Day left: 20"
+horizontal_alignment = 1
 
 [node name="PlayerMenu" parent="CanvasLayer/GameUI" instance=ExtResource("5_sr2f2")]
