@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=12 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="PackedScene" uid="uid://dtxmmajk5ntsw" path="res://player/PlayerEviota.tscn" id="2_0uhqw"]
@@ -7,6 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="4_upago"]
 [ext_resource type="PackedScene" uid="uid://mf0qldclxjpr" path="res://ui/PlayerMenu.tscn" id="5_sr2f2"]
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="6_r0bny"]
+[ext_resource type="Shader" path="res://shader/water_effect.gdshader" id="8_jbp0p"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4qfei"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ej4rm"]
+seamless = true
+noise = SubResource("FastNoiseLite_4qfei")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nap8k"]
+shader = ExtResource("8_jbp0p")
+shader_parameter/refraction_stretch = Vector2(1, 1)
+shader_parameter/refraction_strength = 0.02
+shader_parameter/water_tint = Color(0.2, 0.6, 1, 0)
+shader_parameter/speed = 0.02
+shader_parameter/refraction_map = SubResource("NoiseTexture2D_ej4rm")
 
 [node name="MainGame" type="Node2D"]
 
@@ -16,6 +32,12 @@ position = Vector2(496, 280)
 texture = ExtResource("1_0tepv")
 region_enabled = true
 region_rect = Rect2(0, 0, 4000, 2000)
+
+[node name="WaterShader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_nap8k")
+position = Vector2(524, 228)
+scale = Vector2(68.625, 35.875)
+texture = ExtResource("4_upago")
 
 [node name="YSortGroup" type="Node2D" parent="."]
 y_sort_enabled = true
