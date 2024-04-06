@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://075cq1jo2r0u"]
+
+[ext_resource type="Script" path="res://scene/game_ui.gd" id="1_yatn0"]
+[ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="2_reaai"]
+[ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="3_q7wdd"]
+[ext_resource type="Texture2D" uid="uid://coptx7061meoa" path="res://asset/sprite/ui/clock.png" id="4_nx8cp"]
+[ext_resource type="PackedScene" uid="uid://mf0qldclxjpr" path="res://ui/PlayerMenu.tscn" id="5_lvtvn"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yatn0")
+
+[node name="TopBanner" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.619608)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture = ExtResource("2_reaai")
+
+[node name="GameTitle" type="Label" parent="TopBanner"]
+self_modulate = Color(0, 0, 0, 0.572549)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -675.0
+offset_right = -478.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_q7wdd")
+theme_override_font_sizes/font_size = 24
+text = "Fish Debt RPG"
+
+[node name="DayLabel" type="RichTextLabel" parent="TopBanner"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -675.0
+offset_top = 24.0
+offset_right = -491.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("3_q7wdd")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Day left: 20"
+
+[node name="MoneyLabel" type="Label" parent="TopBanner"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -278.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = 42.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_q7wdd")
+theme_override_font_sizes/font_size = 24
+text = "Money: 0$"
+horizontal_alignment = 2
+
+[node name="TimeDial" type="TextureProgressBar" parent="TopBanner"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -26.5
+offset_right = 26.5
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 8.0
+value = 3.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("4_nx8cp")
+texture_progress = ExtResource("4_nx8cp")
+tint_progress = Color(0, 0, 0, 0.870588)
+
+[node name="PlayerMenu" parent="." instance=ExtResource("5_lvtvn")]
+visible = false
+
+[node name="BotBanner" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.360784)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_reaai")
+expand_mode = 1
+
+[node name="HelpText" type="Label" parent="BotBanner"]
+self_modulate = Color(0.741176, 0.741176, 0.741176, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -675.0
+offset_top = 8.0
+offset_right = -75.0
+offset_bottom = 30.0
+grow_horizontal = 2
+text = "WASD: move | Tab: open menu"

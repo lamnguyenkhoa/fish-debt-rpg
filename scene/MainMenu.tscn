@@ -96,14 +96,15 @@ theme_override_fonts/font = ExtResource("1_1t8w5")
 theme_override_font_sizes/font_size = 90
 text = "Fish debt RPG"
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 336.0
+[node name="Label" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 192.0
 offset_top = 56.0
-offset_right = 991.0
+offset_right = 1152.0
 offset_bottom = 161.0
-theme_override_fonts/font = ExtResource("1_1t8w5")
-theme_override_font_sizes/font_size = 80
-text = "Fish debt RPG"
+theme_override_fonts/normal_font = ExtResource("1_1t8w5")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][wave]Fish debt RPG[/wave][/center]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7

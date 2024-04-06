@@ -26,11 +26,17 @@ var current_sp: int = BASE_STAMINA:
 		current_sp = value
 		player_menu.update_stamina_bar(value, max_sp)
 var for_stat = 10 # Each point increase health and stamina by 5
-var int_stat = 10
+var int_stat = 40
 var str_stat = 10
 var har_stat = 10
 var yee_stat = 10 # Each point increase movespeed by 2%
-var money = 0
+var money: int = 0:
+	set(value):
+		if value < 0:
+			value = 0
+		money = value
+		GameManager.game_ui.update_money_text(value)
+		GameManager.player_menu.refresh_stat()
 
 var player_menu: PlayerMenu = null
 var direction: Vector2 = Vector2.ZERO
@@ -45,7 +51,6 @@ func _ready() -> void:
 	recalculate_stat()
 	current_hp = max_hp
 	current_sp = max_sp
-	print(current_hp, " ", max_hp, " ", current_sp, " ", max_sp)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_player_menu") and not in_work:
@@ -64,7 +69,7 @@ func _physics_process(_delta):
 	else:
 		set_interact_label("")
 	# Handle pickup input
-	if Input.is_action_just_pressed("interact") and things_in_range.size() > 0:
+	if Input.is_action_just_pressed("interact") and things_in_range.size() > 0 and not in_work:
 		# You can prioritize certain types of items or implement a way for the player to cycle through them
 		things_in_range[0].interact(self) # For simplicity, picking up the first item in range
 	# Movement

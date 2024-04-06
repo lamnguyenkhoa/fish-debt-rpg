@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0phdv304e2jj"
-path="res://.godot/imported/company.png-75dce6eac9d0f5bfd7e0cf205e8ad1c7.ctex"
+uid="uid://bbky62fetqw8r"
+path="res://.godot/imported/shark_boss.png-4e94fea98b09238be91e96f30288c557.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/sprite/building/company.png"
-dest_files=["res://.godot/imported/company.png-75dce6eac9d0f5bfd7e0cf205e8ad1c7.ctex"]
+source_file="res://asset/sprite/fish/shark_boss.png"
+dest_files=["res://.godot/imported/shark_boss.png-4e94fea98b09238be91e96f30288c557.ctex"]
 
 [params]
 
