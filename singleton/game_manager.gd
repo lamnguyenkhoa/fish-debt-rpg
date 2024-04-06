@@ -1,6 +1,6 @@
 extends Node
 
-var debt_money = 200000
+var debt_money = 1000000
 var interest_rate = 1.05
 
 var player: Player

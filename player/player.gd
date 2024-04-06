@@ -5,25 +5,46 @@ class_name Player
 @onready var interact_label: Label = $InteractLabel
 @onready var interact_area: Area2D = $InteractArea
 
-var speed: float = 200
-var max_hp: int = 5 # health
-var max_sp: int = 5 # stamina
-var current_hp
-var current_sp
-var for_stat = 10
+const BASE_MOVESPEED = 200
+const BASE_HEALTH = 50
+const BASE_STAMINA = 50
+
+var max_hp: int = BASE_HEALTH:
+	set(value):
+		max_hp = value
+		player_menu.update_health_bar(current_hp, value)
+var max_sp: int = BASE_STAMINA:
+	set(value):
+		max_sp = value
+		player_menu.update_stamina_bar(current_sp, value)
+var current_hp: int = BASE_HEALTH:
+	set(value):
+		current_hp = value
+		player_menu.update_health_bar(value, max_hp)
+var current_sp: int = BASE_STAMINA:
+	set(value):
+		current_sp = value
+		player_menu.update_stamina_bar(value, max_sp)
+var for_stat = 10 # Each point increase health and stamina by 5
 var int_stat = 10
 var str_stat = 10
 var har_stat = 10
-var yee_stat = 10
+var yee_stat = 10 # Each point increase movespeed by 2%
 var money = 0
 
+var player_menu: PlayerMenu = null
 var direction: Vector2 = Vector2.ZERO
 var things_in_range = []
 
 func _ready() -> void:
 	GameManager.player = self
+	await get_tree().process_frame
+	await get_tree().process_frame
+	player_menu = GameManager.player_menu
+	recalculate_stat()
 	current_hp = max_hp
 	current_sp = max_sp
+	print(current_hp, " ", max_hp, " ", current_sp, " ", max_sp)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_player_menu"):
@@ -45,11 +66,10 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("interact") and things_in_range.size() > 0:
 		# You can prioritize certain types of items or implement a way for the player to cycle through them
 		things_in_range[0].interact(self) # For simplicity, picking up the first item in range
-
 	# Movement
 	direction = Vector2.ZERO
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * speed
+	velocity = direction * BASE_MOVESPEED * (1 + yee_stat / 50.0)
 
 	if velocity.x < 0:
 		sprite.scale.x = 0.2
@@ -57,6 +77,10 @@ func _physics_process(_delta):
 		sprite.scale.x = -0.2
 
 	move_and_slide()
+
+func recalculate_stat():
+	max_hp = BASE_HEALTH + for_stat * 5
+	max_sp = BASE_STAMINA + for_stat * 5
 
 func damaged(type: String, value: int):
 	if type == "hp":
