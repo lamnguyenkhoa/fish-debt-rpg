@@ -35,6 +35,7 @@ var money = 0
 var player_menu: PlayerMenu = null
 var direction: Vector2 = Vector2.ZERO
 var things_in_range = []
+var in_work = false
 
 func _ready() -> void:
 	GameManager.player = self
@@ -47,7 +48,7 @@ func _ready() -> void:
 	print(current_hp, " ", max_hp, " ", current_sp, " ", max_sp)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("open_player_menu"):
+	if event.is_action_pressed("open_player_menu") and not in_work:
 		GameManager.player_menu.toggle_menu()
 
 func _physics_process(_delta):
@@ -69,7 +70,8 @@ func _physics_process(_delta):
 	# Movement
 	direction = Vector2.ZERO
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * BASE_MOVESPEED * (1 + yee_stat / 50.0)
+	if not in_work:
+		velocity = direction * BASE_MOVESPEED * (1 + yee_stat / 50.0)
 
 	if velocity.x < 0:
 		sprite.scale.x = 0.2
