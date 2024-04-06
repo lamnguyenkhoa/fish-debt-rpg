@@ -19,7 +19,7 @@ class_name WorkButton
 
 func _ready() -> void:
 	button.text = job_name
-	label.text = "{0}$ / {1} shift(s)".format([job_pay, job_time_needed])
+	label.text = "{0}$ / {1} period(s)".format([job_pay, job_time_needed])
 	if not Engine.is_editor_hint():
 		GameManager.time_passed.connect(update_work_status)
 		update_work_status()
@@ -27,7 +27,7 @@ func _ready() -> void:
 func update_work_status():
 	button.disabled = false
 	button.text = job_name
-	label.text = "{0}$ / {1} shift(s)".format([job_pay * company.current_reputation_level, job_time_needed])
+	label.text = "{0}$ / {1} period(s)".format([job_pay * company.current_reputation_level, job_time_needed])
 
 	# Check availability
 	if job_time_needed > GameManager.get_time_left():
