@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://mf0qldclxjpr"]
+[gd_scene load_steps=6 format=3 uid="uid://mf0qldclxjpr"]
 
 [ext_resource type="Script" path="res://ui/player_menu.gd" id="1_widhm"]
 [ext_resource type="Texture2D" uid="uid://dfgijvecgklle" path="res://asset/sprite/ui/eviota_avatar.png" id="2_bt7mv"]
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="3_osxo0"]
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="4_1ohro"]
+[ext_resource type="PackedScene" uid="uid://cla805uxt7pt5" path="res://ui/InventoryButton.tscn" id="5_14qko"]
 
 [node name="PlayerMenu" type="Control"]
 layout_mode = 3
@@ -23,8 +24,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_osxo0")
 tab_alignment = 1
+current_tab = 1
 
 [node name="Status" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Avatar" type="TextureRect" parent="TabContainer/Status"]
@@ -251,34 +254,59 @@ theme_override_font_sizes/font_size = 20
 text = "Debt money: 20000$"
 
 [node name="Inventory" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="TabContainer/Inventory"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 14.0
+offset_right = 409.0
+offset_bottom = 246.0
+color = Color(0.380392, 0.380392, 0.380392, 0.509804)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Inventory"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 20.0
-offset_right = 185.0
-offset_bottom = 364.0
+offset_left = 25.0
+offset_top = 22.0
+offset_right = 401.0
+offset_bottom = 238.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Inventory/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Label" type="Button" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer"]
+[node name="InventoryButton" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
 layout_mode = 2
-text = "Fish-soda"
 
-[node name="Label2" type="Button" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer"]
+[node name="InventoryButton2" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
 layout_mode = 2
-text = "Fish-soda"
 
-[node name="Label3" type="Button" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer"]
+[node name="InventoryButton3" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
 layout_mode = 2
-text = "Fish-soda"
 
-[node name="Label4" type="Button" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer"]
+[node name="InventoryButton4" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
 layout_mode = 2
-text = "Fish-soda"
+
+[node name="InventoryButton5" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
+layout_mode = 2
+
+[node name="InventoryButton6" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
+layout_mode = 2
+
+[node name="InventoryButton7" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Inventory"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 262.0
+offset_right = 409.0
+offset_bottom = 358.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[font_size=24][Item name][/font_size]
+
+Recover 25% of your HP."
 
 [node name="Option" type="Control" parent="TabContainer"]
 visible = false

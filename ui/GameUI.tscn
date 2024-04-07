@@ -116,4 +116,4 @@ offset_top = 8.0
 offset_right = -75.0
 offset_bottom = 30.0
 grow_horizontal = 2
-text = "WASD: move | Tab: open menu"
+text = "WASD: Move | Tab: Open menu | E: Interact"

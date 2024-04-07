@@ -44,7 +44,7 @@ var money: int = 0:
 var player_menu: PlayerMenu = null
 var direction: Vector2 = Vector2.ZERO
 var things_in_range = []
-var in_work = false
+var is_busy = false
 
 func _ready() -> void:
 	GameManager.player = self
@@ -56,7 +56,7 @@ func _ready() -> void:
 	current_sp = max_sp
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("open_player_menu") and not in_work:
+	if event.is_action_pressed("open_player_menu") and not is_busy:
 		GameManager.player_menu.toggle_menu()
 
 func _physics_process(_delta):
@@ -72,13 +72,13 @@ func _physics_process(_delta):
 	else:
 		set_interact_label("")
 	# Handle pickup input
-	if Input.is_action_just_pressed("interact") and things_in_range.size() > 0 and not in_work:
+	if Input.is_action_just_pressed("interact") and things_in_range.size() > 0 and not is_busy:
 		# You can prioritize certain types of items or implement a way for the player to cycle through them
 		things_in_range[0].interact(self) # For simplicity, picking up the first item in range
 	# Movement
 	direction = Vector2.ZERO
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if not in_work:
+	if not is_busy:
 		velocity = direction * BASE_MOVESPEED * (1 + yee_stat / 50.0)
 	else:
 		velocity = Vector2.ZERO

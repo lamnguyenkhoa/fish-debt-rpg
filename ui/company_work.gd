@@ -24,9 +24,17 @@ func _ready() -> void:
 	show_position_id_work(0)
 	refresh_promote_eligibility()
 
+func _input(event):
+	if event.is_action_pressed("leave_place") and visible:
+		close_ui()
+
 func open_ui():
 	visible = true
 	emit_signal("ui_opened")
+
+func close_ui():
+	visible = false
+	GameManager.player.is_busy = false
 
 func gain_xp(amount: int):
 	if current_reputation_level >= max_reputation_level:
@@ -47,8 +55,7 @@ func gain_xp(amount: int):
 	progress_label.text = "[center]{0} / {1}[/center]".format([current_xp, xp_per_level[current_reputation_level - 1]])
 
 func _on_leave_button_pressed() -> void:
-	visible = false
-	GameManager.player.in_work = false
+	close_ui()
 
 func show_position_id_work(id: int):
 	for child in job_box.get_children():

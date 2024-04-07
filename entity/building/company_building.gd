@@ -6,7 +6,7 @@ class_name CompanyBuilding
 
 func interact(_player: Player):
 	open_company_ui.open_ui()
-	GameManager.player.in_work = true
+	GameManager.player.is_busy = true
 	GameManager.player_menu.close_menu()
 
 func get_interact_text(_player: Player) -> String:

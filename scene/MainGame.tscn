@@ -47,7 +47,7 @@ y_sort_enabled = true
 [node name="PlayerEviota" parent="YSortGroup" instance=ExtResource("2_0uhqw")]
 position = Vector2(674, 412)
 
-[node name="FishCorpCompany" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("3_i16ob")]
+[node name="SharkSolutionCorp" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("3_i16ob")]
 position = Vector2(1080, 368)
 interact_text = "Work at Shark Solution Corp"
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/SharkSolutionWork")

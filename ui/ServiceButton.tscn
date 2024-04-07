@@ -5,10 +5,6 @@
 
 [node name="ServiceButton" type="HBoxContainer"]
 script = ExtResource("1_3fg44")
-recover_hp = null
-recover_sp = null
-recover_hp_percentage = null
-recover_sp_percentage = null
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
