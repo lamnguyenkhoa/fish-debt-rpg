@@ -10,23 +10,24 @@ const BASE_HEALTH = 50
 const BASE_STAMINA = 50
 
 signal money_changed
+signal inventory_changed
 
 var max_hp: int = BASE_HEALTH:
 	set(value):
 		max_hp = value
-		player_menu.update_health_bar(current_hp, value)
+		player_menu.status_menu.update_health_bar(current_hp, value)
 var max_sp: int = BASE_STAMINA:
 	set(value):
 		max_sp = value
-		player_menu.update_stamina_bar(current_sp, value)
+		player_menu.status_menu.update_stamina_bar(current_sp, value)
 var current_hp: int = BASE_HEALTH:
 	set(value):
 		current_hp = value
-		player_menu.update_health_bar(value, max_hp)
+		player_menu.status_menu.update_health_bar(value, max_hp)
 var current_sp: int = BASE_STAMINA:
 	set(value):
 		current_sp = value
-		player_menu.update_stamina_bar(value, max_sp)
+		player_menu.status_menu.update_stamina_bar(value, max_sp)
 var for_stat = 10 # Each point increase health and stamina by 5
 var int_stat = 99
 var str_stat = 10
@@ -38,13 +39,14 @@ var money: int = 0:
 			value = 0
 		money = value
 		GameManager.game_ui.update_money_text(value)
-		GameManager.player_menu.refresh_stat()
+		GameManager.player_menu.status_menu.refresh_stat()
 		emit_signal("money_changed")
 
 var player_menu: PlayerMenu = null
 var direction: Vector2 = Vector2.ZERO
 var things_in_range = []
 var is_busy = false
+var inventory: Dictionary = {}
 
 func _ready() -> void:
 	GameManager.player = self
@@ -94,7 +96,7 @@ func recalculate_stat():
 	max_hp = BASE_HEALTH + for_stat * 5
 	max_sp = BASE_STAMINA + for_stat * 5
 
-func damaged(type: String, value: int, is_percentage_max: bool = false):
+func damaged(type: String, value: int, is_percentage_max: bool=false):
 	if type == "hp":
 		if is_percentage_max:
 			current_hp = clamp(current_hp - (max_hp * (value / 100.0)), 0, max_hp)
@@ -106,7 +108,7 @@ func damaged(type: String, value: int, is_percentage_max: bool = false):
 		else:
 			current_sp = clamp(current_sp - value, 0, max_sp)
 
-func recover(type: String, value: int, is_percentage_max: bool = false):
+func recover(type: String, value: int, is_percentage_max: bool=false):
 	if type == "hp":
 		if is_percentage_max:
 			current_hp = clamp(current_hp + (max_hp * (value / 100.0)), 0, max_hp)
@@ -121,3 +123,11 @@ func recover(type: String, value: int, is_percentage_max: bool = false):
 func set_interact_label(text: String):
 	if text != interact_label.text:
 		interact_label.text = text
+
+func acquired_item(item_id: EnumAutoload.ItemId, amount: int):
+	inventory[item_id] += amount
+	emit_signal("inventory_changed")
+
+func lost_item(item_id: EnumAutoload.ItemId, amount: int):
+	inventory[item_id] -= amount
+	emit_signal("inventory_changed")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://mf0qldclxjpr"]
+[gd_scene load_steps=8 format=3 uid="uid://mf0qldclxjpr"]
 
 [ext_resource type="Script" path="res://ui/player_menu.gd" id="1_widhm"]
 [ext_resource type="Texture2D" uid="uid://dfgijvecgklle" path="res://asset/sprite/ui/eviota_avatar.png" id="2_bt7mv"]
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="3_osxo0"]
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="4_1ohro"]
-[ext_resource type="PackedScene" uid="uid://cla805uxt7pt5" path="res://ui/InventoryButton.tscn" id="5_14qko"]
+[ext_resource type="Script" path="res://ui/status_menu.gd" id="4_7dpqm"]
+[ext_resource type="Script" path="res://ui/inventory_menu.gd" id="6_px05k"]
+[ext_resource type="PackedScene" uid="uid://cla805uxt7pt5" path="res://ui/ItemButton.tscn" id="7_cy0jt"]
 
 [node name="PlayerMenu" type="Control"]
 layout_mode = 3
@@ -29,6 +31,7 @@ current_tab = 1
 [node name="Status" type="Control" parent="TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("4_7dpqm")
 
 [node name="Avatar" type="TextureRect" parent="TabContainer/Status"]
 layout_mode = 0
@@ -255,6 +258,8 @@ text = "Debt money: 20000$"
 
 [node name="Inventory" type="Control" parent="TabContainer"]
 layout_mode = 2
+script = ExtResource("6_px05k")
+item_button_prefab = ExtResource("7_cy0jt")
 
 [node name="ColorRect" type="ColorRect" parent="TabContainer/Inventory"]
 layout_mode = 0
@@ -275,28 +280,10 @@ offset_bottom = 238.0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InventoryButton" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
+[node name="ItemButton" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("7_cy0jt")]
 layout_mode = 2
 
-[node name="InventoryButton2" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
-layout_mode = 2
-
-[node name="InventoryButton3" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
-layout_mode = 2
-
-[node name="InventoryButton4" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
-layout_mode = 2
-
-[node name="InventoryButton5" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
-layout_mode = 2
-
-[node name="InventoryButton6" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
-layout_mode = 2
-
-[node name="InventoryButton7" parent="TabContainer/Inventory/ScrollContainer/VBoxContainer" instance=ExtResource("5_14qko")]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Inventory"]
+[node name="ItemDesc" type="RichTextLabel" parent="TabContainer/Inventory"]
 layout_mode = 0
 offset_left = 17.0
 offset_top = 262.0
@@ -320,9 +307,9 @@ offset_right = 419.0
 offset_bottom = 19.0
 text = "X"
 
-[connection signal="mouse_entered" from="TabContainer/Status/Statbox/ForBox/ForLabel" to="." method="_on_for_label_mouse_entered"]
-[connection signal="mouse_entered" from="TabContainer/Status/Statbox/IntBox/IntLabel" to="." method="_on_int_label_mouse_entered"]
-[connection signal="mouse_entered" from="TabContainer/Status/Statbox/StrBox/StrLabel" to="." method="_on_str_label_mouse_entered"]
-[connection signal="mouse_entered" from="TabContainer/Status/Statbox/HarBox/HarLabel" to="." method="_on_har_label_mouse_entered"]
-[connection signal="mouse_entered" from="TabContainer/Status/Statbox/YeeBox/YeeLabel" to="." method="_on_yee_labe_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/ForBox/ForLabel" to="TabContainer/Status" method="_on_for_label_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/IntBox/IntLabel" to="TabContainer/Status" method="_on_int_label_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/StrBox/StrLabel" to="TabContainer/Status" method="_on_str_label_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/HarBox/HarLabel" to="TabContainer/Status" method="_on_har_label_mouse_entered"]
+[connection signal="mouse_entered" from="TabContainer/Status/Statbox/YeeBox/YeeLabel" to="TabContainer/Status" method="_on_yee_label_mouse_entered"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

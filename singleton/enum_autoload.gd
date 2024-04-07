@@ -1,6 +1,13 @@
 extends Node
 
-enum ItemID {
+enum ItemType {
+    NONE,
+    CONSUMABLE = 1,
+    EQUIPMENT = 2,
+    KEY = 3
+}
+
+enum ItemId {
     NONE,
     # FOOD
     FRIED_RICE = 1000,

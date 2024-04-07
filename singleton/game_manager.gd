@@ -4,12 +4,18 @@ var debt_money = 1000000
 var interest_rate = 1.05
 var day_left = 20
 var current_time = 0 # from 0 to 8, 8 unit of time
+var item_database_dict: Dictionary = {}
 
 var player: Player
 var player_menu: PlayerMenu
 var game_ui: GameUI
 
 signal time_passed
+signal inventory_changed
+
+func _ready():
+	load_item_database()
+	init_inventory()
 
 func get_time_left():
 	return 8 - current_time
@@ -17,3 +23,38 @@ func get_time_left():
 func pass_time(time: int):
 	current_time = clampi(current_time + time, 0, 8)
 	emit_signal("time_passed")
+
+func load_item_database():
+	var directory_path = "res://item/"
+
+	# Get a list of files in the directory
+	var dir = DirAccess.open(directory_path)
+
+	# Loop through each file in the directory
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+
+	while file_name != "":
+		if file_name.ends_with(".tres"):
+			# Load each resource file using ResourceLoader
+			var resource_path = directory_path + file_name
+			var resource = ResourceLoader.load(resource_path) as ItemResource
+			if resource != null:
+				# Do something with the loaded resource, e.g., add it to the scene
+				# item_database.append(resource)
+				item_database_dict[resource.item_id] = resource
+			else:
+				print("Failed to load resource:", resource_path)
+
+		# Get the next file in the directory
+		file_name = dir.get_next()
+	dir.list_dir_end()
+
+func init_inventory():
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	for item_id in item_database_dict.keys():
+		player.inventory[item_id] = 0
+	player.inventory[EnumAutoload.ItemId.OCTO_BENTO] = 1
+	player.inventory[EnumAutoload.ItemId.FRIED_RICE] = 2

@@ -26,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.270588, 0.054902, 0.00392157, 0.584314)
+color = Color(0.231373, 0.0470588, 0.00392157, 0.721569)
 
 [node name="WorkLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -235,39 +235,28 @@ offset_bottom = 616.0
 layout_mode = 2
 service_name = "Dine-in"
 service_desc = "Fully restore stamina"
-service_cost = 100
+service_cost = 200
 reputation_xp = 15
 company = NodePath("../..")
-recover_hp = 0
-recover_sp = 0
 recover_hp_percentage = 100
-recover_sp_percentage = 0
 
 [node name="ServiceButton2" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("7_w13ys")]
 layout_mode = 2
 service_name = "Takeaway 1"
 service_desc = "Buy Octo-bento"
-service_cost = 50
+service_cost = 100
 reputation_xp = 10
 company = NodePath("../..")
 give_item_id = 1001
-recover_hp = 0
-recover_sp = 0
-recover_hp_percentage = 0
-recover_sp_percentage = 0
 
 [node name="ServiceButton3" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("7_w13ys")]
 layout_mode = 2
 service_name = "Takeaway 2"
 service_desc = "Buy Fried rice"
-service_cost = 25
+service_cost = 50
 reputation_xp = 5
 company = NodePath("../..")
 give_item_id = 1000
-recover_hp = 0
-recover_sp = 0
-recover_hp_percentage = 0
-recover_sp_percentage = 0
 
 [node name="LeaveButton" type="Button" parent="."]
 layout_mode = 0

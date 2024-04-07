@@ -9,7 +9,7 @@ class_name ServiceButton
 @export var company: CompanyWork
 
 # Service given
-@export var give_item_id: EnumAutoload.ItemID = EnumAutoload.ItemID.NONE 
+@export var give_item_id: EnumAutoload.ItemId = EnumAutoload.ItemId.NONE
 @export var give_item_amount: int = 1
 @export var recover_hp: int = 0
 @export var recover_sp: int = 0
@@ -36,8 +36,8 @@ func update_service_status():
 
 func _on_button_pressed():
 	GameManager.player.money -= service_cost
-	if give_item_id != EnumAutoload.ItemID.NONE:
-		print("Buy item id ", give_item_id)
+	if give_item_id != EnumAutoload.ItemId.NONE:
+		GameManager.player.acquired_item(give_item_id, give_item_amount)
 	if special_case != "":
 		#TODO
 		pass
@@ -45,6 +45,3 @@ func _on_button_pressed():
 	GameManager.player.recover("hp", recover_hp_percentage, true)
 	GameManager.player.recover("sp", recover_sp, false)
 	GameManager.player.recover("sp", recover_sp_percentage, true)
-
-	
-	
