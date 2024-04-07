@@ -26,7 +26,7 @@ var current_sp: int = BASE_STAMINA:
 		current_sp = value
 		player_menu.update_stamina_bar(value, max_sp)
 var for_stat = 10 # Each point increase health and stamina by 5
-var int_stat = 40
+var int_stat = 99
 var str_stat = 10
 var har_stat = 10
 var yee_stat = 10 # Each point increase movespeed by 2%
@@ -79,7 +79,7 @@ func _physics_process(_delta):
 		velocity = direction * BASE_MOVESPEED * (1 + yee_stat / 50.0)
 	else:
 		velocity = Vector2.ZERO
-		
+
 	if velocity.x < 0:
 		sprite.scale.x = 0.2
 	if velocity.x > 0:
