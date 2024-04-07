@@ -55,6 +55,7 @@ func gain_xp(amount: int):
 	progress_label.text = "[center]{0} / {1}[/center]".format([current_xp, xp_per_level[current_reputation_level - 1]])
 
 func _on_leave_button_pressed() -> void:
+	SoundManager.play_button_click_sfx()
 	close_ui()
 
 func show_position_id_work(id: int):
@@ -95,4 +96,8 @@ func refresh_promote_eligibility():
 		promote_button.text = "Need {0} YEE.".format([next_job.need_yee_stat])
 
 func _on_promote_button_pressed():
+	SoundManager.play_button_click_sfx()
 	promote()
+
+func play_button_hover_sfx():
+	SoundManager.play_button_hover_sfx()

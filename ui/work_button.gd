@@ -62,3 +62,7 @@ func _on_button_pressed() -> void:
 		GameManager.player.money += job_pay * company.current_reputation_level
 	company.gain_xp(reputation_xp)
 	GameManager.pass_time(job_time_needed)
+	SoundManager.play_button_click_sfx()
+
+func play_button_hover_sfx():
+	SoundManager.play_button_hover_sfx()

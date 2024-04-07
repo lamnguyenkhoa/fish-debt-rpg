@@ -11,6 +11,7 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") and intro_cutscene.visible:
+		play_ui_click_sound()
 		if intro_cutscene.current_tab < max_tabs:
 			intro_cutscene.current_tab += 1
 		else:

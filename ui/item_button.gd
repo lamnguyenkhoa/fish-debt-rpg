@@ -17,8 +17,11 @@ func _on_button_mouse_entered() -> void:
 	if inventory_menu == null or item_data == null:
 		return
 	inventory_menu.show_item_description(item_data)
+	SoundManager.play_button_hover_sfx()
 
 func _on_button_pressed() -> void:
+	SoundManager.play_button_click_sfx()
+
 	if item_data.type == EnumAutoload.ItemType.CONSUMABLE:
 		GameManager.player.lost_item(item_data.item_id, 1)
 

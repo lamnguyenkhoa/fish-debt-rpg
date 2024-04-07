@@ -38,6 +38,7 @@ func update_service_status():
 		button.disabled = true
 
 func _on_button_pressed():
+	SoundManager.play_button_click_sfx()
 	GameManager.player.money -= service_cost
 	if give_item_id != EnumAutoload.ItemId.NONE:
 		GameManager.player.acquired_item(give_item_id, give_item_amount)
@@ -52,3 +53,6 @@ func resolve_special_case(_special_case: EnumAutoload.ServiceSpecialCase):
 	match _special_case:
 		EnumAutoload.ServiceSpecialCase.NEXT_DAY:
 			GameManager.move_to_next_day()
+
+func play_button_hover_sfx():
+	SoundManager.play_button_hover_sfx()

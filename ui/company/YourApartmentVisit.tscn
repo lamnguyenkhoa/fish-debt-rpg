@@ -191,4 +191,5 @@ theme_override_font_sizes/font_size = 25
 text = "Leave"
 
 [connection signal="pressed" from="PromoteButton" to="." method="_on_promote_button_pressed"]
+[connection signal="mouse_entered" from="LeaveButton" to="." method="play_button_hover_sfx"]
 [connection signal="pressed" from="LeaveButton" to="." method="_on_leave_button_pressed"]
