@@ -77,7 +77,9 @@ func _physics_process(_delta):
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if not in_work:
 		velocity = direction * BASE_MOVESPEED * (1 + yee_stat / 50.0)
-
+	else:
+		velocity = Vector2.ZERO
+		
 	if velocity.x < 0:
 		sprite.scale.x = 0.2
 	if velocity.x > 0:

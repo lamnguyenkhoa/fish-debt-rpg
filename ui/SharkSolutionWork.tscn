@@ -81,9 +81,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -619.0
-offset_top = 64.0
+offset_top = 161.0
 offset_right = -171.0
-offset_bottom = 97.0
+offset_bottom = 194.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_nvde1")
 theme_override_font_sizes/font_size = 24
@@ -92,9 +92,9 @@ text = "Reputation - 1"
 [node name="ReputationProgress" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 112.0
+offset_top = 209.0
 offset_right = 640.0
-offset_bottom = 136.0
+offset_bottom = 233.0
 value = 25.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_lorkx")
@@ -127,9 +127,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -619.0
-offset_top = 176.0
+offset_top = 273.0
 offset_right = -171.0
-offset_bottom = 209.0
+offset_bottom = 306.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_nvde1")
 theme_override_font_sizes/font_size = 24
@@ -138,9 +138,9 @@ text = "Work as..."
 [node name="JobBox" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 216.0
+offset_top = 313.0
 offset_right = 640.0
-offset_bottom = 623.0
+offset_bottom = 372.0
 theme_override_constants/separation = 15
 
 [node name="WorkButton" parent="JobBox" node_paths=PackedStringArray("company") instance=ExtResource("5_nhnt8")]
@@ -151,6 +151,7 @@ reputation_xp = 5
 company = NodePath("../..")
 
 [node name="WorkButton2" parent="JobBox" node_paths=PackedStringArray("company") instance=ExtResource("5_nhnt8")]
+visible = false
 layout_mode = 2
 job_name = "IT Support"
 job_pay = 50
@@ -159,6 +160,7 @@ company = NodePath("../..")
 need_int_stat = 10
 
 [node name="WorkButton3" parent="JobBox" node_paths=PackedStringArray("company") instance=ExtResource("5_nhnt8")]
+visible = false
 layout_mode = 2
 job_name = "Web Developer"
 job_pay = 220
@@ -168,6 +170,7 @@ company = NodePath("../..")
 need_int_stat = 20
 
 [node name="WorkButton4" parent="JobBox" node_paths=PackedStringArray("company") instance=ExtResource("5_nhnt8")]
+visible = false
 layout_mode = 2
 job_name = "Database Admin"
 job_pay = 390
@@ -177,6 +180,7 @@ company = NodePath("../..")
 need_int_stat = 30
 
 [node name="WorkButton5" parent="JobBox" node_paths=PackedStringArray("company") instance=ExtResource("5_nhnt8")]
+visible = false
 layout_mode = 2
 job_name = "Project Manager"
 job_pay = 800
@@ -186,6 +190,7 @@ company = NodePath("../..")
 need_int_stat = 40
 
 [node name="WorkButton6" parent="JobBox" node_paths=PackedStringArray("company") instance=ExtResource("5_nhnt8")]
+visible = false
 layout_mode = 2
 job_name = "Director"
 job_pay = 1200
@@ -195,6 +200,7 @@ company = NodePath("../..")
 need_int_stat = 50
 
 [node name="WorkButton7" parent="JobBox" node_paths=PackedStringArray("company") instance=ExtResource("5_nhnt8")]
+visible = false
 layout_mode = 2
 job_name = "CEO"
 job_pay = 3000
@@ -205,12 +211,23 @@ need_int_stat = 60
 
 [node name="LeaveButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 288.0
+offset_left = 312.0
 offset_top = 624.0
-offset_right = 389.0
+offset_right = 413.0
 offset_bottom = 665.0
 theme_override_fonts/font = ExtResource("1_nvde1")
 theme_override_font_sizes/font_size = 25
 text = "Leave"
 
+[node name="PromoteButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 448.0
+offset_right = 576.0
+offset_bottom = 489.0
+theme_override_fonts/font = ExtResource("1_nvde1")
+theme_override_font_sizes/font_size = 25
+text = "Promote"
+
 [connection signal="pressed" from="LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="pressed" from="PromoteButton" to="." method="_on_promote_button_pressed"]

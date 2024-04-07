@@ -32,6 +32,7 @@ func update_work_status():
 	# Check availability
 	if job_time_needed > GameManager.get_time_left():
 		button.disabled = true
+		return false
 	if GameManager.player != null:
 		if GameManager.player.for_stat < need_for_stat:
 			button.disabled = true
