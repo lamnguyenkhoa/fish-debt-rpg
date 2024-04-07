@@ -13,3 +13,8 @@ enum ItemId {
     FRIED_RICE = 1000,
     OCTO_BENTO = 1001,
 }
+
+enum ServiceSpecialCase {
+    NONE,
+    NEXT_DAY = 100
+}

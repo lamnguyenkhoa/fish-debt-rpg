@@ -51,7 +51,7 @@ grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("3_q7wdd")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Day left: 20"
+text = "Days left: 20"
 
 [node name="MoneyLabel" type="Label" parent="TopBanner"]
 layout_mode = 1

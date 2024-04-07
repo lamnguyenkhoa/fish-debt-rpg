@@ -15,13 +15,16 @@ class_name ServiceButton
 @export var recover_sp: int = 0
 @export var recover_hp_percentage: int = 0
 @export var recover_sp_percentage: int = 0
-@export var special_case: String = ""
+@export var special_case: EnumAutoload.ServiceSpecialCase
 
 @onready var button: Button = $Button
 @onready var label: Label = $Label
 
 func _ready() -> void:
-	button.text = "{0} ({1}$)".format([service_name, service_cost])
+	if service_cost > 0:
+		button.text = "{0} ({1}$)".format([service_name, service_cost])
+	else:
+		button.text = "{0}".format([service_name])
 	label.text = service_desc
 	if not Engine.is_editor_hint():
 		update_service_status()
@@ -38,10 +41,14 @@ func _on_button_pressed():
 	GameManager.player.money -= service_cost
 	if give_item_id != EnumAutoload.ItemId.NONE:
 		GameManager.player.acquired_item(give_item_id, give_item_amount)
-	if special_case != "":
-		#TODO
-		pass
+	if special_case != EnumAutoload.ServiceSpecialCase.NONE:
+		resolve_special_case(special_case)
 	GameManager.player.recover("hp", recover_hp, false)
 	GameManager.player.recover("hp", recover_hp_percentage, true)
 	GameManager.player.recover("sp", recover_sp, false)
 	GameManager.player.recover("sp", recover_sp_percentage, true)
+
+func resolve_special_case(_special_case: EnumAutoload.ServiceSpecialCase):
+	match _special_case:
+		EnumAutoload.ServiceSpecialCase.NEXT_DAY:
+			GameManager.move_to_next_day()

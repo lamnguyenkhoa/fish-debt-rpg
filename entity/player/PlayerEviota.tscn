@@ -70,6 +70,7 @@ shape = SubResource("RectangleShape2D_73y42")
 debug_color = Color(0.0431373, 0.701961, 0.054902, 0.419608)
 
 [node name="InteractLabel" type="Label" parent="."]
+z_index = 100
 offset_left = -128.0
 offset_top = -56.0
 offset_right = 128.0

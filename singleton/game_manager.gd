@@ -12,6 +12,7 @@ var game_ui: GameUI
 
 signal time_passed
 signal inventory_changed
+signal day_passed
 
 func _ready():
 	load_item_database()
@@ -23,6 +24,12 @@ func get_time_left():
 func pass_time(time: int):
 	current_time = clampi(current_time + time, 0, 8)
 	emit_signal("time_passed")
+
+func move_to_next_day():
+	day_left -= 1
+	current_time = 0
+	emit_signal("time_passed")
+	emit_signal("day_passed")
 
 func load_item_database():
 	var directory_path = "res://item/"
