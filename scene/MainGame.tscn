@@ -1,15 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=20 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="PackedScene" uid="uid://dtxmmajk5ntsw" path="res://entity/player/PlayerEviota.tscn" id="2_0uhqw"]
 [ext_resource type="Script" path="res://scene/camera_follow.gd" id="3_bmpse"]
 [ext_resource type="PackedScene" uid="uid://yhpp75dbteo1" path="res://entity/building/SharkSolutionBuilding.tscn" id="3_i16ob"]
+[ext_resource type="Texture2D" uid="uid://bncvi8074qve1" path="res://asset/sprite/building/seaweed_tiled_hotizontal.png" id="3_np4vr"]
+[ext_resource type="Texture2D" uid="uid://b0ofcfywvrxa4" path="res://asset/sprite/building/seaweed_tiled_vertical.png" id="4_myd5i"]
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="4_upago"]
 [ext_resource type="PackedScene" uid="uid://h7orxnlmdjqe" path="res://entity/building/OctopusRestaurantBuilding.tscn" id="6_wluxn"]
 [ext_resource type="PackedScene" uid="uid://075cq1jo2r0u" path="res://ui/GameUI.tscn" id="7_6vlpv"]
 [ext_resource type="Shader" path="res://shader/water_effect.gdshader" id="8_jbp0p"]
 [ext_resource type="PackedScene" uid="uid://dq1lf15wa51dl" path="res://ui/company/SharkSolutionWork.tscn" id="9_tsdjd"]
 [ext_resource type="PackedScene" uid="uid://dwus0dorc3abk" path="res://ui/company/OctopusRestaurantVisit.tscn" id="10_475j1"]
+[ext_resource type="Shader" path="res://shader/windwalker_water.gdshader" id="10_bs6qu"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4qfei"]
 noise_type = 0
@@ -26,6 +29,21 @@ shader_parameter/water_tint = Color(0.2, 0.6, 1, 0)
 shader_parameter/speed = 0.02
 shader_parameter/refraction_map = SubResource("NoiseTexture2D_bdlnd")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqsta"]
+size = Vector2(64, 1728)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufjok"]
+size = Vector2(3520, 60)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yrcn7"]
+shader = ExtResource("10_bs6qu")
+shader_parameter/WATER_COL = Color(0.0901961, 0.321569, 0.431373, 1)
+shader_parameter/WATER2_COL = Color(0.0235294, 0.196078, 0.286275, 1)
+shader_parameter/FOAM_COL = Color(0.505882, 0.572549, 0.576471, 1)
+shader_parameter/distortion_speed = 1.0
+shader_parameter/tile = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0)
+
 [node name="MainGame" type="Node2D"]
 
 [node name="Environment" type="Sprite2D" parent="."]
@@ -33,19 +51,19 @@ texture_repeat = 2
 position = Vector2(496, 280)
 texture = ExtResource("1_0tepv")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 2000)
+region_rect = Rect2(0, 0, 5000, 2500)
 
 [node name="WaterShader" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_nap8k")
-position = Vector2(524, 228)
-scale = Vector2(68.625, 35.875)
+position = Vector2(520, 284)
+scale = Vector2(80.5, 41.125)
 texture = ExtResource("4_upago")
 
 [node name="YSortGroup" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="PlayerEviota" parent="YSortGroup" instance=ExtResource("2_0uhqw")]
-position = Vector2(674, 412)
+position = Vector2(544, 1008)
 
 [node name="SharkSolutionBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("3_i16ob")]
 position = Vector2(1080, 368)
@@ -54,6 +72,60 @@ open_company_ui = NodePath("../../CanvasLayer/WorkUI/SharkSolutionWork")
 
 [node name="OctopusRestaurantBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("6_wluxn")]
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/OctopusRestaurant")
+
+[node name="WorldBorder" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(-1056, 288)
+shape = SubResource("RectangleShape2D_nqsta")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(2272, 300)
+shape = SubResource("RectangleShape2D_nqsta")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(600, -480)
+shape = SubResource("RectangleShape2D_ufjok")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(600, 1064)
+shape = SubResource("RectangleShape2D_ufjok")
+
+[node name="Sprite2D3" type="Sprite2D" parent="WorldBorder"]
+texture_repeat = 2
+position = Vector2(488, -656)
+texture = ExtResource("3_np4vr")
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 390)
+
+[node name="Sprite2D4" type="Sprite2D" parent="WorldBorder"]
+texture_repeat = 2
+position = Vector2(520, 1040)
+texture = ExtResource("3_np4vr")
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 390)
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldBorder"]
+texture_repeat = 2
+position = Vector2(-1144, 248)
+texture = ExtResource("4_myd5i")
+region_enabled = true
+region_rect = Rect2(0, 0, 245, 3500)
+
+[node name="Sprite2D2" type="Sprite2D" parent="WorldBorder"]
+texture_repeat = 2
+position = Vector2(2368, 248)
+texture = ExtResource("4_myd5i")
+region_enabled = true
+region_rect = Rect2(0, 0, 245, 3500)
+
+[node name="WaterTop" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.243137)
+material = SubResource("ShaderMaterial_yrcn7")
+position = Vector2(464, 296)
+scale = Vector2(74.25, 36.25)
+texture = ExtResource("4_upago")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
 visible = false
