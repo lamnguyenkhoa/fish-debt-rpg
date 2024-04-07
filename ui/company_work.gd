@@ -9,77 +9,83 @@ class_name CompanyWork
 @onready var promote_button: Button = $PromoteButton
 @onready var job_box = $JobBox
 
+signal ui_opened
+
 var max_reputation_level: int = 1
 var current_reputation_level: int = 1
 var current_xp: int = 0
 var current_position_id = 0
 
 func _ready() -> void:
-    max_reputation_level = len(xp_per_level) + 1
-    reputation_label.text = "Reputation - {0}".format([current_reputation_level])
-    reputation_progress.value = (float(current_xp) / xp_per_level[current_reputation_level - 1]) * 100
-    progress_label.text = "[center]{0} / {1}[/center]".format([current_xp, xp_per_level[current_reputation_level - 1]])
-    show_position_id_work(0)
-    refresh_promote_eligibility()
+	max_reputation_level = len(xp_per_level) + 1
+	reputation_label.text = "Reputation - {0}".format([current_reputation_level])
+	reputation_progress.value = (float(current_xp) / xp_per_level[current_reputation_level - 1]) * 100
+	progress_label.text = "[center]{0} / {1}[/center]".format([current_xp, xp_per_level[current_reputation_level - 1]])
+	show_position_id_work(0)
+	refresh_promote_eligibility()
+
+func open_ui():
+	visible = true
+	emit_signal("ui_opened")
 
 func gain_xp(amount: int):
-    if current_reputation_level >= max_reputation_level:
-        return
+	if current_reputation_level >= max_reputation_level:
+		return
 
-    current_xp += amount
-    if current_xp >= xp_per_level[current_reputation_level - 1]:
-        current_reputation_level += 1
-        current_xp = 0
-        if current_reputation_level >= max_reputation_level:
-            reputation_label.text = "Reputation - {0}".format([current_reputation_level])
-            reputation_progress.value = 100
-            progress_label.text = "[center][rainbow]Maxed reputation![/rainbow][/center]"
-            return
-    
-    reputation_label.text = "Reputation - {0}".format([current_reputation_level])
-    reputation_progress.value = (float(current_xp) / xp_per_level[current_reputation_level - 1]) * 100
-    progress_label.text = "[center]{0} / {1}[/center]".format([current_xp, xp_per_level[current_reputation_level - 1]])
+	current_xp += amount
+	if current_xp >= xp_per_level[current_reputation_level - 1]:
+		current_reputation_level += 1
+		current_xp = 0
+		if current_reputation_level >= max_reputation_level:
+			reputation_label.text = "Reputation - {0}".format([current_reputation_level])
+			reputation_progress.value = 100
+			progress_label.text = "[center][rainbow]Maxed reputation![/rainbow][/center]"
+			return
+	
+	reputation_label.text = "Reputation - {0}".format([current_reputation_level])
+	reputation_progress.value = (float(current_xp) / xp_per_level[current_reputation_level - 1]) * 100
+	progress_label.text = "[center]{0} / {1}[/center]".format([current_xp, xp_per_level[current_reputation_level - 1]])
 
 func _on_leave_button_pressed() -> void:
-    visible = false
-    GameManager.player.in_work = false
+	visible = false
+	GameManager.player.in_work = false
 
 func show_position_id_work(id: int):
-    for child in job_box.get_children():
-        child.visible = false
-    job_box.get_child(id).visible = true
+	for child in job_box.get_children():
+		child.visible = false
+	job_box.get_child(id).visible = true
 
 func promote():
-    if current_position_id + 1 >= job_box.get_child_count():
-        return
-    current_position_id += 1
-    show_position_id_work(current_position_id)
-    refresh_promote_eligibility()
+	if current_position_id + 1 >= job_box.get_child_count():
+		return
+	current_position_id += 1
+	show_position_id_work(current_position_id)
+	refresh_promote_eligibility()
 
 func refresh_promote_eligibility():
-    if current_position_id + 1 >= job_box.get_child_count():
-        promote_button.disabled = true
-        promote_button.text = "You are peaked!"
-        return
+	if current_position_id + 1 >= job_box.get_child_count():
+		promote_button.disabled = true
+		promote_button.text = "You are peaked!"
+		return
 
-    promote_button.disabled = false
-    promote_button.text = "Apply for Promotion"
-    var next_job: WorkButton = job_box.get_child(current_position_id + 1)
-    if GameManager.player.for_stat < next_job.need_for_stat:
-        promote_button.disabled = true
-        promote_button.text = "Need {0} FOR.".format([next_job.need_for_stat])
-    if GameManager.player.int_stat < next_job.need_int_stat:
-        promote_button.disabled = true
-        promote_button.text = "Need {0} INT.".format([next_job.need_int_stat])
-    if GameManager.player.str_stat < next_job.need_str_stat:
-        promote_button.disabled = true
-        promote_button.text = "Need {0} STR.".format([next_job.need_str_stat])
-    if GameManager.player.har_stat < next_job.need_har_stat:
-        promote_button.disabled = true
-        promote_button.text = "Need {0} HAR.".format([next_job.need_har_stat])
-    if GameManager.player.yee_stat < next_job.need_yee_stat:
-        promote_button.disabled = true
-        promote_button.text = "Need {0} YEE.".format([next_job.need_yee_stat])
+	promote_button.disabled = false
+	promote_button.text = "Apply for Promotion"
+	var next_job: WorkButton = job_box.get_child(current_position_id + 1)
+	if GameManager.player.for_stat < next_job.need_for_stat:
+		promote_button.disabled = true
+		promote_button.text = "Need {0} FOR.".format([next_job.need_for_stat])
+	if GameManager.player.int_stat < next_job.need_int_stat:
+		promote_button.disabled = true
+		promote_button.text = "Need {0} INT.".format([next_job.need_int_stat])
+	if GameManager.player.str_stat < next_job.need_str_stat:
+		promote_button.disabled = true
+		promote_button.text = "Need {0} STR.".format([next_job.need_str_stat])
+	if GameManager.player.har_stat < next_job.need_har_stat:
+		promote_button.disabled = true
+		promote_button.text = "Need {0} HAR.".format([next_job.need_har_stat])
+	if GameManager.player.yee_stat < next_job.need_yee_stat:
+		promote_button.disabled = true
+		promote_button.text = "Need {0} YEE.".format([next_job.need_yee_stat])
 
 func _on_promote_button_pressed():
-    promote()
+	promote()

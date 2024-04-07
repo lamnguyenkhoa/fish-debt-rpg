@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yme5jd66ngrp"
-path="res://.godot/imported/fishcorp_background.png-9bcb403a098b0bcbd6567b45dc0342f6.ctex"
+uid="uid://cccycvc4yfxt0"
+path="res://.godot/imported/octopus_restaurant_background.png-0383f7c042ae15ced9626554fe456e1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/sprite/building/fishcorp_background.png"
-dest_files=["res://.godot/imported/fishcorp_background.png-9bcb403a098b0bcbd6567b45dc0342f6.ctex"]
+source_file="res://asset/sprite/building/octopus_restaurant_background.png"
+dest_files=["res://.godot/imported/octopus_restaurant_background.png-0383f7c042ae15ced9626554fe456e1b.ctex"]
 
 [params]
 

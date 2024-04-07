@@ -9,6 +9,8 @@ const BASE_MOVESPEED = 200
 const BASE_HEALTH = 50
 const BASE_STAMINA = 50
 
+signal money_changed
+
 var max_hp: int = BASE_HEALTH:
 	set(value):
 		max_hp = value
@@ -28,7 +30,7 @@ var current_sp: int = BASE_STAMINA:
 var for_stat = 10 # Each point increase health and stamina by 5
 var int_stat = 99
 var str_stat = 10
-var har_stat = 10
+var har_stat = 99
 var yee_stat = 10 # Each point increase movespeed by 2%
 var money: int = 0:
 	set(value):
@@ -37,6 +39,7 @@ var money: int = 0:
 		money = value
 		GameManager.game_ui.update_money_text(value)
 		GameManager.player_menu.refresh_stat()
+		emit_signal("money_changed")
 
 var player_menu: PlayerMenu = null
 var direction: Vector2 = Vector2.ZERO
@@ -91,11 +94,29 @@ func recalculate_stat():
 	max_hp = BASE_HEALTH + for_stat * 5
 	max_sp = BASE_STAMINA + for_stat * 5
 
-func damaged(type: String, value: int):
+func damaged(type: String, value: int, is_percentage_max: bool = false):
 	if type == "hp":
-		current_hp = clamp(current_hp - value, 0, max_hp)
+		if is_percentage_max:
+			current_hp = clamp(current_hp - (max_hp * (value / 100.0)), 0, max_hp)
+		else:
+			current_hp = clamp(current_hp - value, 0, max_hp)
 	else:
-		current_sp = clamp(current_sp - value, 0, max_sp)
+		if is_percentage_max:
+			current_hp = clamp(current_sp - (max_sp * (value / 100.0)), 0, max_sp)
+		else:
+			current_sp = clamp(current_sp - value, 0, max_sp)
+
+func recover(type: String, value: int, is_percentage_max: bool = false):
+	if type == "hp":
+		if is_percentage_max:
+			current_hp = clamp(current_hp + (max_hp * (value / 100.0)), 0, max_hp)
+		else:
+			current_hp = clamp(current_hp + value, 0, max_hp)
+	else:
+		if is_percentage_max:
+			current_hp = clamp(current_sp + (max_sp * (value / 100.0)), 0, max_sp)
+		else:
+			current_sp = clamp(current_sp + value, 0, max_sp)
 
 func set_interact_label(text: String):
 	if text != interact_label.text:

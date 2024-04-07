@@ -2,10 +2,10 @@ extends Interactable
 class_name CompanyBuilding
 
 @export var interact_text: String
-@export var open_work_ui: CompanyWork
+@export var open_company_ui: CompanyWork
 
 func interact(_player: Player):
-	open_work_ui.visible = true
+	open_company_ui.open_ui()
 	GameManager.player.in_work = true
 	GameManager.player_menu.close_menu()
 
