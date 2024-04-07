@@ -16,7 +16,6 @@ signal day_passed
 
 func _ready():
 	load_item_database()
-	init_inventory()
 
 func get_time_left():
 	return 8 - current_time
@@ -56,12 +55,3 @@ func load_item_database():
 		# Get the next file in the directory
 		file_name = dir.get_next()
 	dir.list_dir_end()
-
-func init_inventory():
-	await get_tree().process_frame
-	await get_tree().process_frame
-
-	for item_id in item_database_dict.keys():
-		player.inventory[item_id] = 0
-	player.inventory[EnumAutoload.ItemId.OCTO_BENTO] = 1
-	player.inventory[EnumAutoload.ItemId.FRIED_RICE] = 2

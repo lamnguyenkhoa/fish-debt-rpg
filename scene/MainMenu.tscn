@@ -447,5 +447,9 @@ libraries = {
 }
 autoplay = "idle"
 
+[connection signal="mouse_entered" from="CanvasLayer/HBoxContainer/PlayButton" to="." method="play_ui_hover_sound"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/HBoxContainer/ContinueButton" to="." method="play_ui_hover_sound"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/HBoxContainer/QuitButton" to="." method="play_ui_hover_sound"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

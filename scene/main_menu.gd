@@ -18,6 +18,17 @@ func _input(event: InputEvent) -> void:
 
 func _on_play_button_pressed() -> void:
 	intro_cutscene.visible = true
+	play_ui_click_sound()
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+	play_ui_click_sound()
+
+func _on_continue_button_pressed() -> void:
+	play_ui_click_sound()
+
+func play_ui_click_sound() -> void:
+	SoundManager.play_button_click_sfx()
+
+func play_ui_hover_sound() -> void:
+	SoundManager.play_button_hover_sfx()

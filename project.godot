@@ -19,6 +19,7 @@ config/icon="res://asset/sprite/ui/eviota_avatar.png"
 
 EnumAutoload="*res://singleton/enum_autoload.gd"
 GameManager="*res://singleton/GameManager.tscn"
+SoundManager="*res://addons/sound_manager/sound_manager.gd"
 
 [display]
 

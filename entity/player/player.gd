@@ -56,6 +56,7 @@ func _ready() -> void:
 	recalculate_stat()
 	current_hp = max_hp
 	current_sp = max_sp
+	init_inventory()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_player_menu") and not is_busy:
@@ -131,3 +132,9 @@ func acquired_item(item_id: EnumAutoload.ItemId, amount: int):
 func lost_item(item_id: EnumAutoload.ItemId, amount: int):
 	inventory[item_id] -= amount
 	emit_signal("inventory_changed")
+
+func init_inventory():
+	for item_id in GameManager.item_database_dict.keys():
+		inventory[item_id] = 0
+	inventory[EnumAutoload.ItemId.OCTO_BENTO] = 1
+	inventory[EnumAutoload.ItemId.FRIED_RICE] = 2

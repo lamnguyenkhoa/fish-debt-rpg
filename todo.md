@@ -1,7 +1,9 @@
 # Todo
 
 - [x] Intro cutscene
-- [ ] FishCorp work
+- [x] FishCorp work
+- [x] Store
+- [x] Apartment to sleep
 - [ ] Thief work
 - [ ] Raid bandit fish
 - [ ] Physical labor work
