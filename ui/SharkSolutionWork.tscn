@@ -25,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.85098)
+color = Color(0.0901961, 0.0941176, 0.203922, 0.67451)
 
 [node name="WorkLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -94,7 +94,7 @@ layout_mode = 0
 offset_left = 128.0
 offset_top = 209.0
 offset_right = 640.0
-offset_bottom = 233.0
+offset_bottom = 240.0
 value = 25.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_lorkx")
@@ -110,9 +110,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.0
-offset_top = -10.0
+offset_top = -16.5
 offset_right = 64.0
-offset_bottom = 10.0
+offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -206,9 +206,9 @@ need_int_stat = 60
 
 [node name="LeaveButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 312.0
+offset_left = 336.0
 offset_top = 624.0
-offset_right = 413.0
+offset_right = 437.0
 offset_bottom = 665.0
 theme_override_fonts/font = ExtResource("1_nvde1")
 theme_override_font_sizes/font_size = 25
@@ -222,7 +222,7 @@ offset_right = 576.0
 offset_bottom = 513.0
 theme_override_fonts/font = ExtResource("1_nvde1")
 theme_override_font_sizes/font_size = 25
-text = "Promote"
+text = "Apply for promotion"
 
 [connection signal="pressed" from="LeaveButton" to="." method="_on_leave_button_pressed"]
 [connection signal="pressed" from="PromoteButton" to="." method="_on_promote_button_pressed"]

@@ -63,7 +63,7 @@ func refresh_promote_eligibility():
         return
 
     promote_button.disabled = false
-    promote_button.text = "Promote"
+    promote_button.text = "Apply for Promotion"
     var next_job: WorkButton = job_box.get_child(current_position_id + 1)
     if GameManager.player.for_stat < next_job.need_for_stat:
         promote_button.disabled = true
