@@ -16,7 +16,6 @@ shader_parameter/y_buffer = 2.0
 size = Vector2(160, 72)
 
 [node name="OctopusRestaurantBuilding" type="StaticBody2D"]
-position = Vector2(0, 8)
 script = ExtResource("1_jnoxt")
 interact_text = "Visit Octopus Restaurant"
 
