@@ -5,6 +5,7 @@ class_name GameUI
 @onready var day_label: RichTextLabel = $TopBanner/DayLabel
 @onready var time_dial: TextureProgressBar = $TopBanner/TimeDial
 @onready var notification_ui: NotificationUI = $NotificationUI
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	GameManager.game_ui = self
@@ -23,3 +24,6 @@ func update_day_label():
 		day_label.text = "[shake]Days left: {0}[/shake]".format([GameManager.day_left])
 	else:
 		day_label.text = "Days left: {0}".format([GameManager.day_left])
+
+func play_day_transition():
+	anim_player.play("day_transition")

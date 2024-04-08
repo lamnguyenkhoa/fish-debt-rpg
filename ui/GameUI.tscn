@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://075cq1jo2r0u"]
+[gd_scene load_steps=10 format=3 uid="uid://075cq1jo2r0u"]
 
 [ext_resource type="Script" path="res://asset/sprite/ui/game_ui.gd" id="1_yatn0"]
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="2_reaai"]
@@ -8,6 +8,39 @@
 [ext_resource type="PackedScene" uid="uid://dqxthbc3g0l2v" path="res://ui/NPCInteractUI.tscn" id="6_w1lfw"]
 [ext_resource type="Script" path="res://ui/notification_ui.gd" id="7_kxei4"]
 
+[sub_resource type="Animation" id="Animation_1m6t5"]
+resource_name = "day_transition"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NextDayCover:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NextDayCover:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5y4gg"]
+_data = {
+"day_transition": SubResource("Animation_1m6t5")
+}
+
 [node name="GameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -16,6 +49,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yatn0")
+
+[node name="NextDayCover" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="TopBanner" type="TextureRect" parent="."]
 self_modulate = Color(0, 0, 0, 0.619608)
@@ -198,6 +241,12 @@ offset_right = -75.0
 offset_bottom = 30.0
 grow_horizontal = 2
 text = "WASD: Move | Tab: Open menu | E: Interact"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5y4gg")
+}
+speed_scale = 2.0
 
 [connection signal="mouse_entered" from="NotificationUI/CloseButton" to="NotificationUI" method="_on_close_button_mouse_entered"]
 [connection signal="pressed" from="NotificationUI/CloseButton" to="NotificationUI" method="_on_close_button_pressed"]

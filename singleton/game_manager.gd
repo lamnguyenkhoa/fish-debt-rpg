@@ -34,6 +34,8 @@ func move_to_next_day(amount: int=1):
 	current_time = 0
 	emit_signal("time_passed")
 	emit_signal("day_passed")
+	close_all_windows()
+	GameManager.game_ui.play_day_transition()
 	if day_left <= 0:
 		end_game(false)
 
