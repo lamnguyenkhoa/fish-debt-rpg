@@ -32,10 +32,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_osxo0")
 tab_alignment = 1
-current_tab = 1
 
 [node name="Inventory" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("6_px05k")
 item_button_prefab = ExtResource("7_cy0jt")
@@ -248,6 +246,7 @@ text = "[font_size=24][Item name][/font_size]
 Recover 25% of your HP."
 
 [node name="Option" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("7_ia5qf")
 
@@ -318,6 +317,38 @@ offset_right = 512.0
 offset_bottom = 120.0
 step = 5.0
 
+[node name="BackMenuButton" type="Button" parent="TabContainer/Option"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -48.0
+offset_right = -4.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_osxo0")
+text = "Back to menu"
+
+[node name="QuitButton" type="Button" parent="TabContainer/Option"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -48.0
+offset_right = -188.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_osxo0")
+text = "Quit game"
+
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 669.0
@@ -335,5 +366,9 @@ text = "X"
 [connection signal="value_changed" from="TabContainer/Option/AudioGroup/MasterSlider" to="TabContainer/Option" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Option/AudioGroup/BGMSlider" to="TabContainer/Option" method="_on_bgm_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Option/AudioGroup/SFXSlider" to="TabContainer/Option" method="_on_sfx_slider_value_changed"]
+[connection signal="mouse_entered" from="TabContainer/Option/BackMenuButton" to="TabContainer/Option" method="_on_back_menu_button_mouse_entered"]
+[connection signal="pressed" from="TabContainer/Option/BackMenuButton" to="TabContainer/Option" method="_on_back_menu_button_pressed"]
+[connection signal="mouse_entered" from="TabContainer/Option/QuitButton" to="TabContainer/Option" method="_on_quit_button_mouse_entered"]
+[connection signal="pressed" from="TabContainer/Option/QuitButton" to="TabContainer/Option" method="_on_quit_button_pressed"]
 [connection signal="mouse_entered" from="CloseButton" to="." method="_on_close_button_mouse_entered"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

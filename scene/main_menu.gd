@@ -11,7 +11,7 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") and intro_cutscene.visible:
-		play_ui_click_sound()
+		SoundManager.play_button_click_sfx()
 		if intro_cutscene.current_tab < max_tabs:
 			intro_cutscene.current_tab += 1
 		else:
@@ -19,16 +19,13 @@ func _input(event: InputEvent) -> void:
 
 func _on_play_button_pressed() -> void:
 	intro_cutscene.visible = true
-	play_ui_click_sound()
+	SoundManager.play_button_click_sfx()
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
-	play_ui_click_sound()
+	SoundManager.play_button_click_sfx()
 
 func _on_continue_button_pressed() -> void:
-	play_ui_click_sound()
-
-func play_ui_click_sound() -> void:
 	SoundManager.play_button_click_sfx()
 
 func play_ui_hover_sound() -> void:

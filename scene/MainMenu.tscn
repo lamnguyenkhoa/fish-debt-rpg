@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://07qmqoaglybr"]
+[gd_scene load_steps=18 format=3 uid="uid://07qmqoaglybr"]
 
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="1_1t8w5"]
 [ext_resource type="Texture2D" uid="uid://duetdfxroa10x" path="res://asset/sprite/ui/menu_background.png" id="1_o4sxj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://3j8gltdbyfh5" path="res://asset/sprite/fish/satan_fish.png" id="9_ia2o1"]
 [ext_resource type="Texture2D" uid="uid://defgrteu7s1qm" path="res://asset/sprite/fish/pope_fish.png" id="10_a4lwx"]
 [ext_resource type="Texture2D" uid="uid://cs1ifrxf8l4lm" path="res://asset/sprite/cutscene/loss_gambling.png" id="10_k6pj4"]
+[ext_resource type="AudioStream" uid="uid://bt5rp6gmikkep" path="res://asset/bgm/OMORI OST - 107 Underwater Highway.ogg" id="12_qp0bc"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nicmk"]
 
@@ -446,6 +447,11 @@ libraries = {
 "": SubResource("AnimationLibrary_utnjn")
 }
 autoplay = "idle"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_qp0bc")
+autoplay = true
+bus = &"BGM"
 
 [connection signal="mouse_entered" from="CanvasLayer/HBoxContainer/PlayButton" to="." method="play_ui_hover_sound"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

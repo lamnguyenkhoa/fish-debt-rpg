@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=34 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="Script" path="res://scene/map_manager.gd" id="1_pelnp"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cjyppyoi6jmhg" path="res://ui/company/GymUI.tscn" id="19_e0jw8"]
 [ext_resource type="PackedScene" uid="uid://bdb5te3l6q8ky" path="res://ui/company/HospitalUI.tscn" id="22_lt8vf"]
 [ext_resource type="PackedScene" uid="uid://y0c66svnd50g" path="res://ui/EndgameUI.tscn" id="24_g7740"]
+[ext_resource type="AudioStream" uid="uid://bu831bljee4u8" path="res://asset/bgm/OMORI OST - 102 Room for 4.ogg" id="27_k807w"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4qfei"]
 noise_type = 0
@@ -241,3 +242,8 @@ visible = false
 layout_mode = 1
 
 [node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("24_g7740")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_k807w")
+autoplay = true
+bus = &"BGM"
