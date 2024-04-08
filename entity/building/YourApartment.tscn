@@ -13,10 +13,10 @@ shader_parameter/x_buffer = 2.0
 shader_parameter/y_buffer = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_valto"]
-size = Vector2(408, 184)
+size = Vector2(398, 182)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6bls"]
-size = Vector2(272, 96)
+size = Vector2(270, 86)
 
 [node name="RedApartment" type="StaticBody2D"]
 script = ExtResource("1_jurqn")
@@ -24,16 +24,19 @@ interact_text = "Go to your apartment"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jua5p")
-position = Vector2(0, -304)
+position = Vector2(58, -238)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_opcs3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-12, -140)
+position = Vector2(41, -75)
 shape = SubResource("RectangleShape2D_valto")
 debug_color = Color(0.701961, 0, 0.0745098, 0.419608)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-72, -32)
+position = Vector2(-15, 29)
 shape = SubResource("RectangleShape2D_m6bls")
 debug_color = Color(0.701961, 0, 0.0745098, 0.419608)
+
+[node name="RespawnSpot" type="Marker2D" parent="."]
+position = Vector2(266, 130)

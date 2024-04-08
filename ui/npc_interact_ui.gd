@@ -68,7 +68,7 @@ func _on_attack_button_pressed() -> void:
 	target_npc.damaged(GameManager.player.str_stat)
 	combat_log.text += "You attacked the [color=red]enemy[/color] for [color=yellow]{0}[/color] damage\n".format([damage])
 	if target_npc.current_hp <= 0:
-		end_combat()
+		win_combat()
 		return
 	enemy_attack()
 
@@ -80,7 +80,7 @@ func _on_special_button_pressed() -> void:
 	check_for_special_attack_eligible()
 	combat_log.text += "You use special attack on the [color=red]enemy[/color] for [color=yellow]{0}[/color] damage\n".format([damage])
 	if target_npc.current_hp <= 0:
-		end_combat()
+		win_combat()
 		return
 	enemy_attack()
 
@@ -90,7 +90,7 @@ func _on_defend_button_pressed() -> void:
 	check_for_special_attack_eligible()
 	combat_log.text += "You braced for defend. Reduce damage taken by 50% and recover 10% stamina\n"
 	if target_npc.current_hp <= 0:
-		end_combat()
+		win_combat()
 		return
 	enemy_attack(0.5)
 	
@@ -112,9 +112,11 @@ func enemy_attack(damage_modifier: float=1.0):
 	combat_log.text += "The [color=red]enemy[/color] attacked you for [color=yellow]{0}[/color] damage\n".format([damage])
 	update_statbar()
 	combat_log.text += '- - -\n'
+	if GameManager.player.current_hp <= 0:
+		lost_combat()
 
-func end_combat():
-	combat_log.text += "The enemy is defeated. You win!\n"
+func win_combat():
+	combat_log.text += "[color=green]The enemy is defeated. You won![/color]\n"
 	if target_npc.defeat_money > 0:
 		combat_log.text += "Received [color=green]{0}[/color]$!\n".format([target_npc.defeat_money])
 	if len(target_npc.defeat_loot) > 0:
@@ -124,6 +126,17 @@ func end_combat():
 	special_button.visible = false
 	defend_button.visible = false
 	escape_button.visible = false
+	leave_button.text = "Leave"
+	leave_button.visible = true
+
+func lost_combat():
+	combat_log.text += "[color=red]The enemy has defeated you! You lost![/color]\n"
+	update_statbar()
+	attack_button.visible = false
+	special_button.visible = false
+	defend_button.visible = false
+	escape_button.visible = false
+	leave_button.text = "Go home and rest"
 	leave_button.visible = true
 
 func check_for_special_attack_eligible():
@@ -136,3 +149,5 @@ func check_for_special_attack_eligible():
 func _on_leave_button_pressed() -> void:
 	close_ui()
 	SoundManager.play_button_click_sfx()
+	if GameManager.player.current_hp <= 0:
+		GameManager.force_go_home_and_rest()

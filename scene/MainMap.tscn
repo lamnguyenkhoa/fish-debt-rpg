@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=31 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
+[ext_resource type="Script" path="res://scene/map_manager.gd" id="1_pelnp"]
 [ext_resource type="PackedScene" uid="uid://dtxmmajk5ntsw" path="res://entity/player/PlayerEviota.tscn" id="2_0uhqw"]
 [ext_resource type="Script" path="res://scene/camera_follow.gd" id="3_bmpse"]
 [ext_resource type="PackedScene" uid="uid://yhpp75dbteo1" path="res://entity/building/SharkSolutionBuilding.tscn" id="3_i16ob"]
@@ -22,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bvjvtbcoje0qb" path="res://ui/company/UniversityUI.tscn" id="17_q7i15"]
 [ext_resource type="PackedScene" uid="uid://cjyppyoi6jmhg" path="res://ui/company/GymUI.tscn" id="19_e0jw8"]
 [ext_resource type="PackedScene" uid="uid://bdb5te3l6q8ky" path="res://ui/company/HospitalUI.tscn" id="22_lt8vf"]
+[ext_resource type="PackedScene" uid="uid://y0c66svnd50g" path="res://ui/EndgameUI.tscn" id="24_g7740"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4qfei"]
 noise_type = 0
@@ -53,7 +55,11 @@ shader_parameter/distortion_speed = 1.0
 shader_parameter/tile = Vector2(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 
-[node name="MainGame" type="Node2D"]
+[node name="MainMap" type="Node2D" node_paths=PackedStringArray("player_apartment", "work_ui", "endgame_ui")]
+script = ExtResource("1_pelnp")
+player_apartment = NodePath("YSortGroup/YourApartment")
+work_ui = NodePath("CanvasLayer/WorkUI")
+endgame_ui = NodePath("CanvasLayer/EndgameUI")
 
 [node name="Environment" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -116,7 +122,7 @@ interact_text = "Work at Shark Solution Corp"
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/SharkSolutionUI")
 
 [node name="OctopusRestaurantBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("6_wluxn")]
-position = Vector2(456, 416)
+position = Vector2(496, 416)
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/OctopusRestaurantUI")
 
 [node name="YourApartment" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("7_t4meo")]
@@ -129,7 +135,7 @@ interact_text = "Go to universeaty"
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/UniversityUI")
 
 [node name="Gym" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("9_04awf")]
-position = Vector2(872, 416)
+position = Vector2(1168, 416)
 interact_text = "Go to gym"
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/GymUI")
 
@@ -219,3 +225,5 @@ layout_mode = 1
 [node name="HospitalUI" parent="CanvasLayer/WorkUI" instance=ExtResource("22_lt8vf")]
 visible = false
 layout_mode = 1
+
+[node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("24_g7740")]

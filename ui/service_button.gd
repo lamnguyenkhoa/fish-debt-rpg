@@ -10,6 +10,7 @@ class_name ServiceButton
 @export var company: CompanyWork
 @export var limited_stock = false
 @export var max_service_stock: int = 10
+@export var no_restock = false
 
 @export_group("Service effect")
 @export var give_item_id: EnumAutoload.ItemId = EnumAutoload.ItemId.NONE
@@ -38,6 +39,10 @@ func _ready() -> void:
 		label.text = "{0} period(s), ".format([service_time_needed]) + label.text
 
 	if not Engine.is_editor_hint():
+		if special_case == EnumAutoload.ServiceSpecialCase.PAY_DEBT:
+			service_cost = GameManager.debt_money
+			label.text = "Pay debt {0}$, ".format([service_cost]) + service_desc
+			button.text = service_name
 		update_service_status()
 		company.ui_opened.connect(update_service_status)
 		GameManager.time_passed.connect(update_service_status)
@@ -47,7 +52,7 @@ func _ready() -> void:
 func update_service_status():
 	button.disabled = false
 	button.text = service_name
-	if limited_stock:
+	if limited_stock and special_case != EnumAutoload.ServiceSpecialCase.PAY_DEBT:
 		button.text = "{0} ({1} left)".format([service_name, current_service_stock])
 	if limited_stock and current_service_stock <= 0:
 		button.disabled = true
@@ -80,10 +85,13 @@ func resolve_special_case(_special_case: EnumAutoload.ServiceSpecialCase):
 	match _special_case:
 		EnumAutoload.ServiceSpecialCase.NEXT_DAY:
 			GameManager.move_to_next_day()
+		EnumAutoload.ServiceSpecialCase.PAY_DEBT:
+			GameManager.pay_the_debt()
+			visible = false
 
 func play_button_hover_sfx():
 	SoundManager.play_button_hover_sfx()
 
 func restock():
-	if limited_stock:
+	if limited_stock and not no_restock:
 		current_service_stock = max_service_stock

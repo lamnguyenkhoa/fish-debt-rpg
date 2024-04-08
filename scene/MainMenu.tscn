@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="1_1t8w5"]
 [ext_resource type="Texture2D" uid="uid://duetdfxroa10x" path="res://asset/sprite/ui/menu_background.png" id="1_o4sxj"]
 [ext_resource type="Script" path="res://scene/main_menu.gd" id="1_weaub"]
-[ext_resource type="PackedScene" uid="uid://c0xitnvds1848" path="res://scene/MainGame.tscn" id="2_lt16c"]
+[ext_resource type="PackedScene" uid="uid://c0xitnvds1848" path="res://scene/MainMap.tscn" id="2_lt16c"]
 [ext_resource type="Texture2D" uid="uid://s1mu3i6uehp7" path="res://asset/sprite/ui/eviota_face_front.png" id="3_vpsc1"]
 [ext_resource type="Shader" path="res://shader/water_effect.gdshader" id="4_yjjb2"]
 [ext_resource type="Texture2D" uid="uid://ur6c6neynl5g" path="res://asset/sprite/fish/sign_eviota.png" id="7_5e4xe"]

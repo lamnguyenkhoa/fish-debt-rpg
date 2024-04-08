@@ -10,6 +10,7 @@ var player: Player
 var player_menu: PlayerMenu
 var game_ui: GameUI
 var npc_interact_ui: NPCInteractUI
+var map_manager: MapManager
 
 signal time_passed
 signal inventory_changed
@@ -59,3 +60,29 @@ func load_item_database():
 
 func open_npc_interact_ui(target_npc: NPCFish):
 	npc_interact_ui.open_ui(target_npc)
+
+func force_go_home_and_rest():
+	var respawn_pos = map_manager.player_apartment.get_node("RespawnSpot").global_position
+	player.global_position = respawn_pos
+	move_to_next_day()
+	player.recover("hp", 100, true)
+	player.recover("sp", 100, true)
+
+func pay_the_debt():
+	if player.money >= debt_money:
+		player.money -= debt_money
+		victory()
+
+func victory():
+	# Close all windows
+	player_menu.close_menu()
+	for child: CompanyWork in map_manager.work_ui.get_children():
+		child.close_ui()
+	map_manager.endgame_ui.open_win_screen()
+	GameManager.player.is_busy = true
+
+func reset():
+	debt_money = 1000000
+	interest_rate = 1.05
+	day_left = 20
+	current_time = 0 # from 0 to 8, 8 unit of time

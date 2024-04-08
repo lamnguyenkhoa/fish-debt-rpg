@@ -44,7 +44,7 @@ var str_stat: int = 10:
 		recalculate_stat()
 var har_stat = 99
 var yee_stat = 10 # Each point increase movespeed by 2%
-var money: int = 0:
+var money: int = 100000000:
 	set(value):
 		if value < 0:
 			value = 0
@@ -68,6 +68,7 @@ func _ready() -> void:
 	current_hp = max_hp
 	current_sp = max_sp
 	init_inventory()
+	GameManager.game_ui.update_money_text(money)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_player_menu") and not is_busy:

@@ -21,5 +21,6 @@ enum ItemId {
 
 enum ServiceSpecialCase {
     NONE,
-    NEXT_DAY = 100
+    NEXT_DAY = 100,
+    PAY_DEBT = 200
 }

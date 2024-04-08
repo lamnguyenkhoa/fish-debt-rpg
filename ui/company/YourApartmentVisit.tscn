@@ -164,13 +164,36 @@ offset_bottom = 392.0
 
 [node name="ServiceButton" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_johfd")]
 layout_mode = 2
+service_name = "Quick Nap"
+service_desc = "Recover 5% HP and 10% SP"
+service_cost = 0
+service_time_needed = 1
+company = NodePath("../..")
+no_restock = null
+recover_hp_percentage = 5
+recover_sp_percentage = 10
+
+[node name="ServiceButton2" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_johfd")]
+layout_mode = 2
 service_name = "Sleep"
 service_desc = "Full recovery and move to next day"
 service_cost = 0
 company = NodePath("../..")
+no_restock = null
 recover_hp_percentage = 100
 recover_sp_percentage = 100
 special_case = 100
+
+[node name="ServiceButton3" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_johfd")]
+layout_mode = 2
+service_name = "Pay the debt"
+service_desc = "End the game"
+service_cost = 1000000
+company = NodePath("../..")
+limited_stock = true
+max_service_stock = 1
+no_restock = true
+special_case = 200
 
 [node name="LeaveButton" type="Button" parent="."]
 layout_mode = 0
