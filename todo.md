@@ -6,7 +6,7 @@
 - [x] Apartment to sleep
 - [ ] Thief work
 - [x] Raid bandit fish
-- [ ] Physical labor work
+- [x] Physical labor work
 - [ ] Gambling work
 - [ ] Pizza delivery work
 - [x] Some SFX

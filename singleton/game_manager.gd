@@ -79,7 +79,6 @@ func force_go_home_and_rest():
 		GameManager.game_ui.notification_ui.notify_injured()
 
 func prison_smuggle():
-	print("SMUGG")
 	var random_num = randi() % 100
 	if random_num < 25:
 		sent_to_prison()
