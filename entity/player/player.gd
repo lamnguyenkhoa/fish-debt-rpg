@@ -28,9 +28,15 @@ var current_sp: int = BASE_STAMINA:
 	set(value):
 		current_sp = value
 		player_menu.status_menu.update_stamina_bar(value, max_sp)
-var for_stat = 10 # Each point increase health and stamina by 5
+var for_stat: int = 10: # Each point increase health and stamina by 5
+	set(value):
+		for_stat = value
+		recalculate_stat()
 var int_stat = 99
-var str_stat = 10
+var str_stat: int = 10:
+	set(value):
+		str_stat = value
+		recalculate_stat()
 var har_stat = 99
 var yee_stat = 10 # Each point increase movespeed by 2%
 var money: int = 0:
@@ -117,7 +123,7 @@ func recover(type: String, value: int, is_percentage_max: bool=false):
 			current_hp = clamp(current_hp + value, 0, max_hp)
 	else:
 		if is_percentage_max:
-			current_hp = clamp(current_sp + (max_sp * (value / 100.0)), 0, max_sp)
+			current_sp = clamp(current_sp + (max_sp * (value / 100.0)), 0, max_sp)
 		else:
 			current_sp = clamp(current_sp + value, 0, max_sp)
 

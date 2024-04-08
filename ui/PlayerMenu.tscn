@@ -49,8 +49,7 @@ value = 75.0
 nine_patch_stretch = true
 texture_under = ExtResource("4_1ohro")
 texture_progress = ExtResource("4_1ohro")
-tint_under = Color(0, 0, 0, 1)
-tint_progress = Color(0.0823529, 0.709804, 0, 1)
+tint_progress = Color(0.117647, 1, 0, 1)
 
 [node name="Label" type="Label" parent="TabContainer/Status/HealthBar"]
 layout_mode = 1
@@ -65,6 +64,7 @@ offset_right = 20.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "100/100"
 
 [node name="StaminaBar" type="TextureProgressBar" parent="TabContainer/Status"]
@@ -77,8 +77,7 @@ value = 75.0
 nine_patch_stretch = true
 texture_under = ExtResource("4_1ohro")
 texture_progress = ExtResource("4_1ohro")
-tint_under = Color(0, 0, 0, 1)
-tint_progress = Color(0.698039, 0.670588, 0.054902, 1)
+tint_progress = Color(1, 0.960784, 0.0784314, 1)
 
 [node name="Label" type="Label" parent="TabContainer/Status/StaminaBar"]
 layout_mode = 1
@@ -93,6 +92,7 @@ offset_right = 20.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "100/100"
 
 [node name="Statbox" type="VBoxContainer" parent="TabContainer/Status"]

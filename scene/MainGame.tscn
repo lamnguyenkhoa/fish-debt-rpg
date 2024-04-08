@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=27 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="PackedScene" uid="uid://dtxmmajk5ntsw" path="res://entity/player/PlayerEviota.tscn" id="2_0uhqw"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dq1lf15wa51dl" path="res://ui/company/SharkSolutionWork.tscn" id="9_tsdjd"]
 [ext_resource type="PackedScene" uid="uid://dwus0dorc3abk" path="res://ui/company/OctopusRestaurantVisit.tscn" id="10_475j1"]
 [ext_resource type="Shader" path="res://shader/windwalker_water.gdshader" id="10_bs6qu"]
+[ext_resource type="PackedScene" uid="uid://drivyomhbl11b" path="res://entity/fish/EvilBarracuda.tscn" id="10_yas0d"]
 [ext_resource type="PackedScene" uid="uid://r1ah7gujb1lr" path="res://ui/company/YourApartmentVisit.tscn" id="15_xrgbd"]
 [ext_resource type="PackedScene" uid="uid://bvjvtbcoje0qb" path="res://ui/company/UniversityUI.tscn" id="17_q7i15"]
 [ext_resource type="PackedScene" uid="uid://cjyppyoi6jmhg" path="res://ui/company/GymUI.tscn" id="19_e0jw8"]
@@ -92,6 +93,9 @@ open_company_ui = NodePath("../../CanvasLayer/WorkUI/UniversityUI")
 position = Vector2(560, 0)
 interact_text = "Go to gym"
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/GymUI")
+
+[node name="EvilBarracuda" parent="YSortGroup" instance=ExtResource("10_yas0d")]
+position = Vector2(720, 440)
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 collision_mask = 7

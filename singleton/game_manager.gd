@@ -9,6 +9,7 @@ var item_database_dict: Dictionary = {}
 var player: Player
 var player_menu: PlayerMenu
 var game_ui: GameUI
+var npc_interact_ui: NPCInteractUI
 
 signal time_passed
 signal inventory_changed
@@ -55,3 +56,6 @@ func load_item_database():
 		# Get the next file in the directory
 		file_name = dir.get_next()
 	dir.list_dir_end()
+
+func open_npc_interact_ui(target_npc: NPCFish):
+	npc_interact_ui.open_ui(target_npc)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://075cq1jo2r0u"]
+[gd_scene load_steps=7 format=3 uid="uid://075cq1jo2r0u"]
 
 [ext_resource type="Script" path="res://scene/game_ui.gd" id="1_yatn0"]
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="2_reaai"]
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="3_q7wdd"]
 [ext_resource type="Texture2D" uid="uid://coptx7061meoa" path="res://asset/sprite/ui/clock.png" id="4_nx8cp"]
 [ext_resource type="PackedScene" uid="uid://mf0qldclxjpr" path="res://ui/PlayerMenu.tscn" id="5_lvtvn"]
+[ext_resource type="PackedScene" uid="uid://dqxthbc3g0l2v" path="res://ui/NPCInteractUI.tscn" id="6_w1lfw"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -91,6 +92,10 @@ tint_progress = Color(0, 0, 0, 0.870588)
 
 [node name="PlayerMenu" parent="." instance=ExtResource("5_lvtvn")]
 visible = false
+
+[node name="NPCInteractUI" parent="." instance=ExtResource("6_w1lfw")]
+visible = false
+layout_mode = 1
 
 [node name="BotBanner" type="TextureRect" parent="."]
 self_modulate = Color(0, 0, 0, 0.360784)

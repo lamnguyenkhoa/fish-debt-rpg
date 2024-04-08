@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://drivyomhbl11b"]
+
+[ext_resource type="Script" path="res://entity/fish/npc_fish.gd" id="1_0agm5"]
+[ext_resource type="Texture2D" uid="uid://c4ieqhuvrfx2n" path="res://asset/sprite/fish/barracuda.png" id="1_io65f"]
+[ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="2_dnehk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jt33u"]
+size = Vector2(168, 16)
+
+[node name="EvilBarracuda" type="CharacterBody2D"]
+script = ExtResource("1_0agm5")
+fish_name = "Evil Barracuda"
+is_hostile = true
+max_hp = 100
+stats = Array[int]([10, 10, 10, 10, 10])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.435294, 0.423529, 1)
+position = Vector2(0, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_io65f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -8)
+shape = SubResource("RectangleShape2D_jt33u")
+debug_color = Color(0.701961, 0.00392157, 0.0117647, 0.419608)
+
+[node name="NameLabel" type="Label" parent="."]
+z_index = 50
+offset_left = -128.0
+offset_top = -48.0
+offset_right = 128.0
+offset_bottom = -16.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_dnehk")
+theme_override_font_sizes/font_size = 12
+text = "Evil barracuda"
+horizontal_alignment = 1

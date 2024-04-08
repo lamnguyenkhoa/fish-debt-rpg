@@ -4,7 +4,8 @@ enum ItemType {
     NONE,
     CONSUMABLE = 1,
     EQUIPMENT = 2,
-    KEY = 3
+    KEY = 3,
+    MISC = 4
 }
 
 enum ItemId {
