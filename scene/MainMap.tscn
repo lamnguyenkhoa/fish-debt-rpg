@@ -285,8 +285,7 @@ scale = Vector2(74.25, 36.25)
 texture = ExtResource("4_upago")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
-visible = false
-position = Vector2(664, 152)
+position = Vector2(272, 528)
 position_smoothing_enabled = true
 script = ExtResource("3_bmpse")
 follow_target = NodePath("../YSortGroup/PlayerEviota")
