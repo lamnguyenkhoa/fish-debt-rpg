@@ -31,6 +31,8 @@ func move_to_next_day():
 	current_time = 0
 	emit_signal("time_passed")
 	emit_signal("day_passed")
+	if day_left == 0:
+		end_game(false)
 
 func load_item_database():
 	var directory_path = "res://item/"
@@ -71,14 +73,17 @@ func force_go_home_and_rest():
 func pay_the_debt():
 	if player.money >= debt_money:
 		player.money -= debt_money
-		victory()
+		end_game(true)
 
-func victory():
+func end_game(is_win):
 	# Close all windows
 	player_menu.close_menu()
 	for child: CompanyWork in map_manager.work_ui.get_children():
 		child.close_ui()
-	map_manager.endgame_ui.open_win_screen()
+	if is_win:
+		map_manager.endgame_ui.open_win_screen()
+	else:
+		map_manager.endgame_ui.open_lose_screen()
 	GameManager.player.is_busy = true
 
 func reset():

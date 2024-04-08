@@ -18,4 +18,7 @@ func update_time_dial():
 	time_dial.value = GameManager.current_time
 
 func update_day_label():
-	day_label.text = "Days left: {0}".format([GameManager.day_left])
+	if GameManager.day_left <= 5:
+		day_label.text = "[shake]Days left: {0}[/shake]".format([GameManager.day_left])
+	else:
+		day_label.text = "Days left: {0}".format([GameManager.day_left])

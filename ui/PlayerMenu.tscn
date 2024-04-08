@@ -255,9 +255,12 @@ offset_right = 695.0
 offset_bottom = 24.0
 text = "X"
 
+[connection signal="tab_clicked" from="TabContainer" to="." method="_on_tab_container_tab_clicked"]
+[connection signal="tab_hovered" from="TabContainer" to="." method="_on_tab_container_tab_hovered"]
 [connection signal="mouse_entered" from="TabContainer/Inventory/Statbox/ForBox/ForLabel" to="TabContainer/Inventory" method="_on_for_label_mouse_entered"]
 [connection signal="mouse_entered" from="TabContainer/Inventory/Statbox/IntBox/IntLabel" to="TabContainer/Inventory" method="_on_int_label_mouse_entered"]
 [connection signal="mouse_entered" from="TabContainer/Inventory/Statbox/StrBox/StrLabel" to="TabContainer/Inventory" method="_on_str_label_mouse_entered"]
 [connection signal="mouse_entered" from="TabContainer/Inventory/Statbox/HarBox/HarLabel" to="TabContainer/Inventory" method="_on_har_label_mouse_entered"]
 [connection signal="mouse_entered" from="TabContainer/Inventory/Statbox/YeeBox/YeeLabel" to="TabContainer/Inventory" method="_on_yee_label_mouse_entered"]
+[connection signal="mouse_entered" from="CloseButton" to="." method="_on_close_button_mouse_entered"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
