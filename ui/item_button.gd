@@ -30,6 +30,11 @@ func resolve_item_effect(_item_data: ItemResource):
 	GameManager.player.recover("hp", _item_data.recover_hp_percentage, true)
 	GameManager.player.recover("sp", _item_data.recover_sp, false)
 	GameManager.player.recover("sp", _item_data.recover_sp_percentage, true)
+	GameManager.player.for_stat += _item_data.gain_stat[0]
+	GameManager.player.int_stat += _item_data.gain_stat[1]
+	GameManager.player.str_stat += _item_data.gain_stat[2]
+	GameManager.player.har_stat += _item_data.gain_stat[3]
+	GameManager.player.yee_stat += _item_data.gain_stat[4]
 	if _item_data.special_case != "":
 		#TODO
 		return

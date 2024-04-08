@@ -29,6 +29,7 @@ func init():
 	refresh_inventory_data()
 	item_desc_label.text = ""
 	player.inventory_changed.connect(refresh_inventory_data)
+	player.stat_changed.connect(refresh_stat)
 
 func refresh_stat():
 	for_label.text = "FOR: " + str(player_menu.player.for_stat)

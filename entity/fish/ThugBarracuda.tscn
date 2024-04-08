@@ -36,6 +36,7 @@ fish_name = "Thug Barracuda"
 is_hostile = true
 max_hp = 100
 stats = Array[int]([10, 10, 10, 10, 10])
+defeat_loot = Array[int]([2000])
 
 [node name="Fish" type="Sprite2D" parent="."]
 position = Vector2(0, -8)

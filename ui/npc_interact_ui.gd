@@ -120,7 +120,8 @@ func win_combat():
 	if target_npc.defeat_money > 0:
 		combat_log.text += "Received [color=green]{0}[/color]$!\n".format([target_npc.defeat_money])
 	if len(target_npc.defeat_loot) > 0:
-		combat_log.text += "Received {0} item(s)!\n".format([len(target_npc.defeat_loot)])
+		for loot in target_npc.defeat_loot:
+			combat_log.text += "Received [color=green]{0}[/color]!\n".format([GameManager.item_database_dict[loot].name])
 	update_statbar()
 	attack_button.visible = false
 	special_button.visible = false

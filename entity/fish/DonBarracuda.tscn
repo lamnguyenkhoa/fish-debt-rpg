@@ -37,6 +37,7 @@ tier = 3
 is_hostile = true
 max_hp = 600
 stats = Array[int]([45, 56, 42, 49, 39])
+defeat_loot = Array[int]([2004, 2002])
 
 [node name="Fish" type="Sprite2D" parent="."]
 modulate = Color(0.231373, 0.231373, 0.231373, 1)

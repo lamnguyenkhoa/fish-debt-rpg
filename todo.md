@@ -5,10 +5,10 @@
 - [x] Store
 - [x] Apartment to sleep
 - [ ] Thief work
-- [ ] Raid bandit fish
+- [x] Raid bandit fish
 - [ ] Physical labor work
 - [ ] Gambling work
 - [ ] Pizza delivery work
-- [ ] Some SFX
-- [ ] Some BGM
-- [ ] Setting menu
+- [x] Some SFX
+- [x] Some BGM
+- [x] Setting menu

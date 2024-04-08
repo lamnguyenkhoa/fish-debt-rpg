@@ -16,7 +16,9 @@ enum ItemId {
     # MEDICAL
     BANDAID = 2000,
     FIRST_AID_KIT = 2001,
-    PREMIUM_MEDKIT = 2002
+    PREMIUM_MEDKIT = 2002,
+    BODY_ENHANCE_DRUG = 2003,
+    REFLEX_BOOSTER_DRINK = 2004,
 }
 
 enum ServiceSpecialCase {
