@@ -8,6 +8,10 @@ class_name NPCInteractUI
 @onready var player_stat_label: Label = $TabContainer/Normal/PlayerStat
 @onready var enemy_stat_label: Label = $TabContainer/Normal/EnemyStat
 
+# Steal stuff
+@onready var steal_label: RichTextLabel = $TabContainer/Normal/StealLabelBG/StealLabel
+@onready var steal_button: Button = $TabContainer/Normal/HBoxContainer/StealButton
+
 # Fight stuff
 @onready var fight_button: Button = $TabContainer/Normal/HBoxContainer/FightButton
 @onready var combat_log: RichTextLabel = $TabContainer/Fight/BattleLogArea/BattleLog
@@ -27,7 +31,6 @@ var target_npc: NPCFish
 
 func _ready():
 	visible = false
-	GameManager.npc_interact_ui = self
 
 func open_ui(_target_npc: NPCFish):
 	var player = GameManager.player
@@ -38,10 +41,14 @@ func open_ui(_target_npc: NPCFish):
 	npc_name_label.text = target_npc.fish_name
 	if target_npc.is_hostile:
 		npc_name_label.self_modulate = Color.RED
+		steal_button.disabled = true
 		fight_button.disabled = false
+		steal_label.text = ""
 	else:
 		npc_name_label.self_modulate = Color.GREEN
 		fight_button.disabled = true
+		steal_button.disabled = false
+		steal_label.text = "[center]Steal chance: [color=yellow]{0}%[/color][/center]".format([target_npc.calculate_steal_success_chance()])
 	player_stat_label.text = "FOR: {0}\nINT: {1}\nSTR: {2}\nHAR: {3}\nYEE: {4}".format(
 		[player.for_stat, player.int_stat, player.str_stat, player.har_stat, player.yee_stat])
 	enemy_stat_label.text = "FOR: {0}\nINT: {1}\nSTR: {2}\nHAR: {3}\nYEE: {4}".format(target_npc.stats)
@@ -118,7 +125,7 @@ func enemy_attack(damage_modifier: float=1.0):
 func win_combat():
 	combat_log.text += "[color=green]The enemy is defeated. You won![/color]\n"
 	if target_npc.defeat_money > 0:
-		combat_log.text += "Received [color=green]{0}[/color]$!\n".format([target_npc.defeat_money])
+		combat_log.text += "Received [color=green]{0}$[/color]!\n".format([target_npc.defeat_money])
 	if len(target_npc.defeat_loot) > 0:
 		for loot in target_npc.defeat_loot:
 			combat_log.text += "Received [color=green]{0}[/color]!\n".format([GameManager.item_database_dict[loot].name])
@@ -140,6 +147,23 @@ func lost_combat():
 	leave_button.text = "Go home and rest"
 	leave_button.visible = true
 
+func attempt_to_steal():
+	var random_num = randi() % 100
+	var steal_chance = target_npc.calculate_steal_success_chance()
+	if random_num < steal_chance:
+		target_npc.steal_awareness += 1
+		var stolen_item = target_npc.roll_steal_loot()
+		if stolen_item != EnumAutoload.ItemId.NONE:
+			steal_label.text = "[center]Steal chance: [color=yellow]{0}%[/color]\nReceived [color=green]{1}$[/color]\nReceived [color=green]{2}[/color][/center]".format(
+				[target_npc.calculate_steal_success_chance(), int(target_npc.defeat_money), GameManager.item_database_dict[stolen_item].name])
+			GameManager.player.acquired_item(stolen_item, 1)
+		else:
+			steal_label.text = "[center]Steal chance: [color=yellow]{0}%[/color]\nReceived [color=green]{1}$[/color][/center]".format(
+				[target_npc.calculate_steal_success_chance(), int(target_npc.defeat_money)])
+		target_npc.steal_money()
+	else:
+		GameManager.sent_to_prison()
+
 func check_for_special_attack_eligible():
 	# Current it cost 20 SP to special attack
 	if GameManager.player.current_sp < 20:
@@ -152,3 +176,15 @@ func _on_leave_button_pressed() -> void:
 	SoundManager.play_button_click_sfx()
 	if GameManager.player.current_hp <= 0:
 		GameManager.force_go_home_and_rest()
+
+func _on_steal_button_pressed() -> void:
+	attempt_to_steal()
+
+func _on_leave_button_mouse_entered() -> void:
+	SoundManager.play_button_hover_sfx()
+
+func _on_fight_button_mouse_entered() -> void:
+	SoundManager.play_button_hover_sfx()
+
+func _on_steal_button_mouse_entered() -> void:
+	SoundManager.play_button_hover_sfx()

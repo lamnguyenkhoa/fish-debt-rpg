@@ -9,6 +9,7 @@ class_name NPCFish
 @export var max_hp: int
 @export var stats: Array[int] = [0, 0, 0, 0, 0]
 @export var defeat_loot: Array[EnumAutoload.ItemId]
+@export var possible_steal_loot: Array[EnumAutoload.ItemId]
 
 @onready var name_label: Label = $NameLabel
 @onready var fish_sprite: Sprite2D = $Fish
@@ -16,6 +17,7 @@ class_name NPCFish
 var current_hp: int
 var dead = false
 var defeat_money: int
+var steal_awareness = 0
 
 func _ready() -> void:
 	if flip_sprite:
@@ -49,11 +51,34 @@ func death():
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 func revive():
+	steal_awareness = 0
 	randomly_set_defeat_money()
 	current_hp = max_hp
 	dead = false
 	visible = true
 	process_mode = Node.PROCESS_MODE_INHERIT
+
+func calculate_steal_success_chance() -> int:
+	# By default, steal chance is equal to HAR plus 50
+	var steal_chance = 50 + GameManager.player.har_stat
+	# For each tier beyond 1, steal chance reduced by 10
+	steal_chance -= (tier - 1) * 10
+	# For each count of steal awareness, steal chance reduce by 15
+	steal_chance -= steal_awareness * 15
+	steal_chance = clampi(steal_chance, 0, 100)
+	return steal_chance
+
+func steal_money():
+	var steal_amount = int(defeat_money * 0.1)
+	defeat_money = clampi(defeat_money - steal_amount, 0, 99999999)
+	GameManager.player.money += steal_amount
+
+func roll_steal_loot() -> EnumAutoload.ItemId:
+	if len(possible_steal_loot) == 0:
+		return EnumAutoload.ItemId.NONE
+	var random_index = randi() % len(possible_steal_loot)
+	var random_item = possible_steal_loot[random_index]
+	return random_item
 
 func randomly_set_defeat_money():
 	match tier:

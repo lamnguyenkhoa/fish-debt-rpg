@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=49 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="Script" path="res://scene/map_manager.gd" id="1_pelnp"]
@@ -27,7 +27,12 @@
 [ext_resource type="PackedScene" uid="uid://o7mtseircyj4" path="res://entity/fish/PopeFish.tscn" id="16_x4y7b"]
 [ext_resource type="PackedScene" uid="uid://bvjvtbcoje0qb" path="res://ui/company/UniversityUI.tscn" id="17_q7i15"]
 [ext_resource type="Shader" path="res://shader/2d_wind.gdshader" id="17_rytdt"]
+[ext_resource type="PackedScene" uid="uid://dn0e5wy7w8n2b" path="res://entity/fish/Octopus.tscn" id="18_sfkup"]
+[ext_resource type="PackedScene" uid="uid://c2ihbm08ukep4" path="res://entity/fish/DoctorFish.tscn" id="19_6hknq"]
 [ext_resource type="PackedScene" uid="uid://cjyppyoi6jmhg" path="res://ui/company/GymUI.tscn" id="19_e0jw8"]
+[ext_resource type="PackedScene" uid="uid://m0v4pmr67utb" path="res://entity/fish/Shark.tscn" id="19_f0oh7"]
+[ext_resource type="PackedScene" uid="uid://bql645p037mxa" path="res://entity/fish/Clownfish.tscn" id="19_isd7b"]
+[ext_resource type="PackedScene" uid="uid://cirnhtavxhmn7" path="res://entity/fish/BlueTangFish.tscn" id="20_jug0g"]
 [ext_resource type="PackedScene" uid="uid://bdb5te3l6q8ky" path="res://ui/company/HospitalUI.tscn" id="22_lt8vf"]
 [ext_resource type="PackedScene" uid="uid://bob03cyiaxrcu" path="res://ui/company/PrisonUI.tscn" id="23_n0m50"]
 [ext_resource type="PackedScene" uid="uid://y0c66svnd50g" path="res://ui/EndgameUI.tscn" id="24_g7740"]
@@ -147,7 +152,7 @@ region_rect = Rect2(0, 0, 5000, 390)
 y_sort_enabled = true
 
 [node name="PlayerEviota" parent="YSortGroup" instance=ExtResource("2_0uhqw")]
-position = Vector2(224, 704)
+position = Vector2(272, 664)
 
 [node name="SharkSolutionBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("3_i16ob")]
 position = Vector2(1304, 64)
@@ -191,6 +196,22 @@ stats = Array[int]([22, 14, 15, 12, 17])
 
 [node name="PopeFish" parent="YSortGroup" instance=ExtResource("16_x4y7b")]
 position = Vector2(1976, -280)
+
+[node name="Octopus" parent="YSortGroup" instance=ExtResource("18_sfkup")]
+position = Vector2(672, 448)
+
+[node name="Doctorfish" parent="YSortGroup" instance=ExtResource("19_6hknq")]
+position = Vector2(992, -344)
+
+[node name="Clownfish" parent="YSortGroup" instance=ExtResource("19_isd7b")]
+position = Vector2(392, -136)
+flip_sprite = true
+
+[node name="BlueTangFish" parent="YSortGroup" instance=ExtResource("20_jug0g")]
+position = Vector2(-664, 840)
+
+[node name="Shark" parent="YSortGroup" instance=ExtResource("19_f0oh7")]
+position = Vector2(1496, 168)
 
 [node name="BossBarracuda" parent="YSortGroup" instance=ExtResource("15_qjv23")]
 position = Vector2(-840, 360)

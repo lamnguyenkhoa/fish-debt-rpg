@@ -106,12 +106,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -48.0
-offset_right = 123.0
-offset_bottom = -8.0
+offset_left = -163.0
+offset_top = -56.0
+offset_right = 155.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 40
 
 [node name="FightButton" type="Button" parent="TabContainer/Normal/HBoxContainer"]
 layout_mode = 2
@@ -132,6 +133,40 @@ theme_override_fonts/font = ExtResource("2_nskku")
 theme_override_font_sizes/font_size = 20
 text = "Leave
 "
+
+[node name="StealLabelBG" type="ColorRect" parent="TabContainer/Normal"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -171.0
+offset_top = -168.0
+offset_right = 149.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="StealLabel" type="RichTextLabel" parent="TabContainer/Normal/StealLabelBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Steal chance: [color=yellow]50%[/color]
+You got [color=green]1000$[/color]
+You got [color=green]1000$[/color]
+[/center]"
+scroll_active = false
 
 [node name="Fight" type="Control" parent="TabContainer"]
 visible = false
@@ -343,7 +378,11 @@ Special - Deal damage to enemy based on your 2x STR, but cost 20 stamina.
 Defend - Reduce damage take this turn by 50% and recover 10% stamina.
 "
 
+[connection signal="mouse_entered" from="TabContainer/Normal/HBoxContainer/FightButton" to="." method="_on_fight_button_mouse_entered"]
 [connection signal="pressed" from="TabContainer/Normal/HBoxContainer/FightButton" to="." method="_on_fight_button_pressed"]
+[connection signal="mouse_entered" from="TabContainer/Normal/HBoxContainer/StealButton" to="." method="_on_steal_button_mouse_entered"]
+[connection signal="pressed" from="TabContainer/Normal/HBoxContainer/StealButton" to="." method="_on_steal_button_pressed"]
+[connection signal="mouse_entered" from="TabContainer/Normal/HBoxContainer/LeaveButton" to="." method="_on_leave_button_mouse_entered"]
 [connection signal="pressed" from="TabContainer/Normal/HBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
 [connection signal="pressed" from="TabContainer/Fight/PlayerActions/AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="TabContainer/Fight/PlayerActions/SpecialButton" to="." method="_on_special_button_pressed"]

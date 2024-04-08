@@ -36,17 +36,18 @@ fish_name = "Pope fish"
 tier = 3
 max_hp = 1000
 stats = Array[int]([42, 85, 28, 69, 21])
-
-[node name="Fish" type="Sprite2D" parent="."]
-position = Vector2(0, -4.76837e-07)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_rnf2q")
+possible_steal_loot = Array[int]([1002, 0])
 
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.478431)
 position = Vector2(-8, 56)
 scale = Vector2(3, 0.25)
 texture = ExtResource("3_0je4c")
+
+[node name="Fish" type="Sprite2D" parent="."]
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_rnf2q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8, 4)

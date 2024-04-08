@@ -10,7 +10,6 @@ var debt_paid = false
 var player: Player
 var player_menu: PlayerMenu
 var game_ui: GameUI
-var npc_interact_ui: NPCInteractUI
 var map_manager: MapManager
 
 signal time_passed
@@ -67,7 +66,7 @@ func load_item_database():
 	dir.list_dir_end()
 
 func open_npc_interact_ui(target_npc: NPCFish):
-	npc_interact_ui.open_ui(target_npc)
+	game_ui.npc_interact_ui.open_ui(target_npc)
 
 func force_go_home_and_rest():
 	close_all_windows()
@@ -122,6 +121,7 @@ func close_all_windows():
 	for child: CompanyWork in map_manager.work_ui.get_children():
 		child.close_ui()
 	game_ui.notification_ui.close_ui()
+	game_ui.npc_interact_ui.close_ui()
 
 func reset():
 	debt_money = 1000000

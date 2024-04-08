@@ -80,7 +80,7 @@ func _on_str_label_mouse_entered() -> void:
 	stat_desc.text = "Strength.\n\nIndicate fish's physical prowess. Strong fish can make more money with blue-gill jobs and attack other fishes more effective."
 
 func _on_har_label_mouse_entered() -> void:
-	stat_desc.text = "Harmony.\n\nIndicate fish's flexibility and adaptability. Harmonic fish is charismatic fish. Also it's easier for fish to blend into the environment."
+	stat_desc.text = "Harmony.\n\nIndicate fish's flexibility and adaptability. Harmonic fish is charismatic fish. Also it's easier for fish to blend into the environment and do crime stuff."
 
 func _on_yee_label_mouse_entered() -> void:
 	stat_desc.text = "Yeetiness.\n\nIndicate fish's quickness. Yeety fish is fast fish. Increase movement speed and escape chance."

@@ -5,6 +5,7 @@ class_name GameUI
 @onready var day_label: RichTextLabel = $TopBanner/DayLabel
 @onready var time_dial: TextureProgressBar = $TopBanner/TimeDial
 @onready var notification_ui: NotificationUI = $NotificationUI
+@onready var npc_interact_ui: NPCInteractUI = $NPCInteractUI
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:

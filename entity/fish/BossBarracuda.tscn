@@ -39,17 +39,17 @@ max_hp = 350
 stats = Array[int]([32, 24, 30, 23, 29])
 defeat_loot = Array[int]([2003, 2001])
 
-[node name="Fish" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.435294, 0.423529, 1)
-position = Vector2(0, -8)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_ku5ks")
-
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.478431)
 position = Vector2(-8, 32)
 scale = Vector2(3.75, 0.25)
 texture = ExtResource("3_u5jn3")
+
+[node name="Fish" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.435294, 0.423529, 1)
+position = Vector2(0, -8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_ku5ks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-12, -8)
