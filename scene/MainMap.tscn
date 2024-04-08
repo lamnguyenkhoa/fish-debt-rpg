@@ -164,11 +164,12 @@ flip_sprite = true
 stats = Array[int]([22, 14, 15, 12, 17])
 
 [node name="ThugBarracuda4" parent="YSortGroup" instance=ExtResource("10_yas0d")]
-position = Vector2(-368, -264)
+position = Vector2(-248, -176)
+flip_sprite = true
 stats = Array[int]([22, 14, 15, 12, 17])
 
 [node name="ThugBarracuda5" parent="YSortGroup" instance=ExtResource("10_yas0d")]
-position = Vector2(1984, -160)
+position = Vector2(-568, 208)
 stats = Array[int]([22, 14, 15, 12, 17])
 
 [node name="DonBarracuda" parent="YSortGroup" instance=ExtResource("16_llj84")]

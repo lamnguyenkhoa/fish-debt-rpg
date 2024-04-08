@@ -17,6 +17,9 @@ signal inventory_changed
 signal day_passed
 
 func _ready():
+	SoundManager.set_master_volume(1)
+	SoundManager.set_music_volume(0.8)
+	SoundManager.set_sound_volume(0.8)
 	load_item_database()
 
 func get_time_left():

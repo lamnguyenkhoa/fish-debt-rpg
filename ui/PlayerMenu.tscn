@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://mf0qldclxjpr"]
+[gd_scene load_steps=8 format=3 uid="uid://mf0qldclxjpr"]
 
 [ext_resource type="Script" path="res://ui/player_menu.gd" id="1_widhm"]
 [ext_resource type="Texture2D" uid="uid://dfgijvecgklle" path="res://asset/sprite/ui/eviota_avatar.png" id="2_bt7mv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="4_1ohro"]
 [ext_resource type="Script" path="res://ui/inventory_menu.gd" id="6_px05k"]
 [ext_resource type="PackedScene" uid="uid://cla805uxt7pt5" path="res://ui/ItemButton.tscn" id="7_cy0jt"]
+[ext_resource type="Script" path="res://ui/option_menu.gd" id="7_ia5qf"]
 
 [node name="PlayerMenu" type="Control"]
 layout_mode = 3
@@ -31,8 +32,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_osxo0")
 tab_alignment = 1
+current_tab = 1
 
 [node name="Inventory" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("6_px05k")
 item_button_prefab = ExtResource("7_cy0jt")
@@ -245,8 +248,75 @@ text = "[font_size=24][Item name][/font_size]
 Recover 25% of your HP."
 
 [node name="Option" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
+script = ExtResource("7_ia5qf")
+
+[node name="AudioGroup" type="Control" parent="TabContainer/Option"]
+anchors_preset = 0
+offset_left = 53.0
+offset_top = 35.0
+offset_right = 637.0
+offset_bottom = 219.0
+
+[node name="Title" type="Label" parent="TabContainer/Option/AudioGroup"]
+layout_mode = 1
+offset_right = 71.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("3_osxo0")
+theme_override_font_sizes/font_size = 20
+text = "Audio"
+
+[node name="MasterLabel" type="Label" parent="TabContainer/Option/AudioGroup"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 113.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("3_osxo0")
+text = "Master
+"
+
+[node name="BGMLabel" type="Label" parent="TabContainer/Option/AudioGroup"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 72.0
+offset_right = 113.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("3_osxo0")
+text = "BGM"
+
+[node name="SFXLabel" type="Label" parent="TabContainer/Option/AudioGroup"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 104.0
+offset_right = 113.0
+offset_bottom = 125.0
+theme_override_fonts/font = ExtResource("3_osxo0")
+text = "SFX"
+
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Option/AudioGroup"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 40.0
+offset_right = 512.0
+offset_bottom = 56.0
+step = 5.0
+
+[node name="BGMSlider" type="HSlider" parent="TabContainer/Option/AudioGroup"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 72.0
+offset_right = 512.0
+offset_bottom = 88.0
+step = 5.0
+
+[node name="SFXSlider" type="HSlider" parent="TabContainer/Option/AudioGroup"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 104.0
+offset_right = 512.0
+offset_bottom = 120.0
+step = 5.0
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0
@@ -262,5 +332,8 @@ text = "X"
 [connection signal="mouse_entered" from="TabContainer/Inventory/Statbox/StrBox/StrLabel" to="TabContainer/Inventory" method="_on_str_label_mouse_entered"]
 [connection signal="mouse_entered" from="TabContainer/Inventory/Statbox/HarBox/HarLabel" to="TabContainer/Inventory" method="_on_har_label_mouse_entered"]
 [connection signal="mouse_entered" from="TabContainer/Inventory/Statbox/YeeBox/YeeLabel" to="TabContainer/Inventory" method="_on_yee_label_mouse_entered"]
+[connection signal="value_changed" from="TabContainer/Option/AudioGroup/MasterSlider" to="TabContainer/Option" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Option/AudioGroup/BGMSlider" to="TabContainer/Option" method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Option/AudioGroup/SFXSlider" to="TabContainer/Option" method="_on_sfx_slider_value_changed"]
 [connection signal="mouse_entered" from="CloseButton" to="." method="_on_close_button_mouse_entered"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
