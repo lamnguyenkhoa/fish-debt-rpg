@@ -6,11 +6,11 @@
 script = ExtResource("1_lfm2y")
 item_id = 1000
 name = "Fried rice"
-description = "Fried rice, made from searice and fried with seabutter.
-Recover 30 HP and 30 SP."
+description = "Delicious fried rice made from searice and fried with seabutter.
+Recover 20 SP."
 type = 1
-recover_hp = 30
-recover_sp = 30
+recover_hp = 0
+recover_sp = 20
 recover_hp_percentage = 0
 recover_sp_percentage = 0
 special_case = ""

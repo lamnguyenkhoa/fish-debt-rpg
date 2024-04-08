@@ -9,7 +9,7 @@ class_name ServiceButton
 @export var reputation_xp: int = 0
 @export var company: CompanyWork
 @export var limited_stock = false
-@export var service_stock: int = 10
+@export var max_service_stock: int = 10
 
 @export_group("Service effect")
 @export var give_item_id: EnumAutoload.ItemId = EnumAutoload.ItemId.NONE
@@ -24,10 +24,13 @@ class_name ServiceButton
 @onready var button: Button = $Button
 @onready var label: Label = $Label
 
+var current_service_stock: int
+
 func _ready() -> void:
+	current_service_stock = max_service_stock
 	button.text = service_name
 	if limited_stock:
-		button.text = "{0} ({1} left)".format([service_name, service_stock])
+		button.text = "{0} ({1} left)".format([service_name, current_service_stock])
 	label.text = service_desc
 	if service_cost > 0:
 		label.text = "{0}$, ".format([service_cost]) + label.text
@@ -38,14 +41,15 @@ func _ready() -> void:
 		update_service_status()
 		company.ui_opened.connect(update_service_status)
 		GameManager.time_passed.connect(update_service_status)
+		GameManager.day_passed.connect(restock)
 		GameManager.player.money_changed.connect(update_service_status)
 
 func update_service_status():
 	button.disabled = false
 	button.text = service_name
 	if limited_stock:
-		button.text = "{0} ({1} left)".format([service_name, service_stock])
-	if limited_stock and service_stock <= 0:
+		button.text = "{0} ({1} left)".format([service_name, current_service_stock])
+	if limited_stock and current_service_stock <= 0:
 		button.disabled = true
 	if GameManager.player.money < service_cost:
 		button.disabled = true
@@ -54,7 +58,7 @@ func update_service_status():
 
 func _on_button_pressed():
 	if limited_stock:
-		service_stock -= 1
+		current_service_stock -= 1
 	SoundManager.play_button_click_sfx()
 	GameManager.player.money -= service_cost
 	if give_item_id != EnumAutoload.ItemId.NONE:
@@ -79,3 +83,7 @@ func resolve_special_case(_special_case: EnumAutoload.ServiceSpecialCase):
 
 func play_button_hover_sfx():
 	SoundManager.play_button_hover_sfx()
+
+func restock():
+	if limited_stock:
+		current_service_stock = max_service_stock

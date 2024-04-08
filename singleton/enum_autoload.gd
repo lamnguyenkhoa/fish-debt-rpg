@@ -13,6 +13,10 @@ enum ItemId {
     # FOOD
     FRIED_RICE = 1000,
     OCTO_BENTO = 1001,
+    # MEDICAL
+    BANDAID = 2000,
+    FIRST_AID_KIT = 2001,
+    PREMIUM_MEDKIT = 2002
 }
 
 enum ServiceSpecialCase {

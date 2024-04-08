@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=29 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="PackedScene" uid="uid://dtxmmajk5ntsw" path="res://entity/player/PlayerEviota.tscn" id="2_0uhqw"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://r1ah7gujb1lr" path="res://ui/company/YourApartmentVisit.tscn" id="15_xrgbd"]
 [ext_resource type="PackedScene" uid="uid://bvjvtbcoje0qb" path="res://ui/company/UniversityUI.tscn" id="17_q7i15"]
 [ext_resource type="PackedScene" uid="uid://cjyppyoi6jmhg" path="res://ui/company/GymUI.tscn" id="19_e0jw8"]
+[ext_resource type="PackedScene" uid="uid://bdb5te3l6q8ky" path="res://ui/company/HospitalUI.tscn" id="22_lt8vf"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4qfei"]
 noise_type = 0
@@ -132,8 +133,9 @@ position = Vector2(872, 416)
 interact_text = "Go to gym"
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/GymUI")
 
-[node name="Hospital" parent="YSortGroup" instance=ExtResource("10_v3uhw")]
+[node name="Hospital" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("10_v3uhw")]
 position = Vector2(856, -376)
+open_company_ui = NodePath("../../CanvasLayer/WorkUI/HospitalUI")
 
 [node name="EvilBarracuda" parent="YSortGroup" instance=ExtResource("10_yas0d")]
 position = Vector2(-616, 176)
@@ -211,5 +213,9 @@ visible = false
 layout_mode = 1
 
 [node name="GymUI" parent="CanvasLayer/WorkUI" instance=ExtResource("19_e0jw8")]
+visible = false
+layout_mode = 1
+
+[node name="HospitalUI" parent="CanvasLayer/WorkUI" instance=ExtResource("22_lt8vf")]
 visible = false
 layout_mode = 1
