@@ -87,7 +87,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label2" type="Label" parent="CanvasLayer"]
+[node name="TitleShadow" type="Label" parent="CanvasLayer"]
 self_modulate = Color(0, 0, 0, 0.556863)
 offset_left = 304.0
 offset_top = 24.0
@@ -97,7 +97,7 @@ theme_override_fonts/font = ExtResource("1_1t8w5")
 theme_override_font_sizes/font_size = 90
 text = "Fish debt RPG"
 
-[node name="Label" type="RichTextLabel" parent="CanvasLayer"]
+[node name="Title" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 192.0
 offset_top = 56.0
 offset_right = 1152.0
@@ -106,6 +106,16 @@ theme_override_fonts/normal_font = ExtResource("1_1t8w5")
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "[center][wave]Fish debt RPG[/wave][/center]"
+
+[node name="BuildLabel" type="Label" parent="CanvasLayer"]
+offset_left = 608.0
+offset_top = 728.0
+offset_right = 766.0
+offset_bottom = 763.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+text = "a game made by JohnMiner
+build v0.5"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
