@@ -2,7 +2,6 @@ extends Control
 class_name PlayerMenu
 
 @onready var tab_container: TabContainer = $TabContainer
-@onready var status_menu: StatusMenu = $TabContainer/Status
 @onready var inventory_menu: InventoryMenu = $TabContainer/Inventory
 
 var player: Player = null
@@ -13,7 +12,6 @@ func _ready():
 	await get_tree().process_frame
 	await get_tree().process_frame
 	player = GameManager.player
-	status_menu.init()
 	inventory_menu.init()
 
 func toggle_menu():
@@ -24,7 +22,7 @@ func toggle_menu():
 
 func open_menu():
 	visible = true
-	status_menu.refresh_stat()
+	inventory_menu.refresh_stat()
 	inventory_menu.refresh_inventory_data()
 
 func close_menu():

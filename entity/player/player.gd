@@ -16,22 +16,22 @@ signal stat_changed
 var max_hp: int = BASE_HEALTH:
 	set(value):
 		max_hp = value
-		player_menu.status_menu.update_health_bar(current_hp, value)
+		player_menu.inventory_menu.update_health_bar(current_hp, value)
 		emit_signal("stat_changed")
 var max_sp: int = BASE_STAMINA:
 	set(value):
 		max_sp = value
-		player_menu.status_menu.update_stamina_bar(current_sp, value)
+		player_menu.inventory_menu.update_stamina_bar(current_sp, value)
 		emit_signal("stat_changed")
 var current_hp: int = BASE_HEALTH:
 	set(value):
 		current_hp = value
-		player_menu.status_menu.update_health_bar(value, max_hp)
+		player_menu.inventory_menu.update_health_bar(value, max_hp)
 		emit_signal("stat_changed")
 var current_sp: int = BASE_STAMINA:
 	set(value):
 		current_sp = value
-		player_menu.status_menu.update_stamina_bar(value, max_sp)
+		player_menu.inventory_menu.update_stamina_bar(value, max_sp)
 		emit_signal("stat_changed")
 var for_stat: int = 10: # Each point increase health and stamina by 5
 	set(value):
@@ -50,7 +50,7 @@ var money: int = 0:
 			value = 0
 		money = value
 		GameManager.game_ui.update_money_text(value)
-		GameManager.player_menu.status_menu.refresh_stat()
+		GameManager.player_menu.inventory_menu.refresh_stat()
 		emit_signal("money_changed")
 
 var player_menu: PlayerMenu = null
