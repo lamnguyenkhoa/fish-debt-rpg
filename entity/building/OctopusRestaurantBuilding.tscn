@@ -13,7 +13,7 @@ shader_parameter/x_buffer = 2.0
 shader_parameter/y_buffer = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_valto"]
-size = Vector2(160, 72)
+size = Vector2(272, 80)
 
 [node name="OctopusRestaurantBuilding" type="StaticBody2D"]
 script = ExtResource("1_jnoxt")
@@ -21,11 +21,11 @@ interact_text = "Visit Octopus Restaurant"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jua5p")
-position = Vector2(0, -80)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -104)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_kexma")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -36)
+position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_valto")
 debug_color = Color(0.701961, 0, 0.0745098, 0.419608)

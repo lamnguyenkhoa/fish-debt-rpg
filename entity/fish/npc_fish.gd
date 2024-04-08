@@ -1,24 +1,30 @@
+@tool
 extends Interactable
 class_name NPCFish
 
 @export var fish_name: String
 @export var tier: int = 1
 @export var is_hostile: bool
+@export var flip_sprite: bool
 @export var max_hp: int
 @export var stats: Array[int] = [0, 0, 0, 0, 0]
 @export var defeat_loot: Array[EnumAutoload.ItemId]
 
 @onready var name_label: Label = $NameLabel
+@onready var fish_sprite: Sprite2D = $Fish
 
 var current_hp: int
 var dead = false
 var defeat_money: int
 
 func _ready() -> void:
-	current_hp = max_hp
-	name_label.text = fish_name
-	randomly_set_defeat_money()
-	GameManager.day_passed.connect(revive)
+	if flip_sprite:
+		fish_sprite.scale.x = -fish_sprite.scale.x
+	if not Engine.is_editor_hint():
+		current_hp = max_hp
+		name_label.text = fish_name
+		randomly_set_defeat_money()
+		GameManager.day_passed.connect(revive)
 
 func interact(_player: Player):
 	GameManager.open_npc_interact_ui(self)

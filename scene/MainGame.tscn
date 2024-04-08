@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=28 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="PackedScene" uid="uid://dtxmmajk5ntsw" path="res://entity/player/PlayerEviota.tscn" id="2_0uhqw"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dq1lf15wa51dl" path="res://ui/company/SharkSolutionWork.tscn" id="9_tsdjd"]
 [ext_resource type="PackedScene" uid="uid://dwus0dorc3abk" path="res://ui/company/OctopusRestaurantVisit.tscn" id="10_475j1"]
 [ext_resource type="Shader" path="res://shader/windwalker_water.gdshader" id="10_bs6qu"]
+[ext_resource type="PackedScene" uid="uid://biqxju6alq3qq" path="res://entity/building/HospitalBuilding.tscn" id="10_v3uhw"]
 [ext_resource type="PackedScene" uid="uid://drivyomhbl11b" path="res://entity/fish/EvilBarracuda.tscn" id="10_yas0d"]
 [ext_resource type="PackedScene" uid="uid://r1ah7gujb1lr" path="res://ui/company/YourApartmentVisit.tscn" id="15_xrgbd"]
 [ext_resource type="PackedScene" uid="uid://bvjvtbcoje0qb" path="res://ui/company/UniversityUI.tscn" id="17_q7i15"]
@@ -66,84 +67,105 @@ position = Vector2(520, 284)
 scale = Vector2(80.5, 41.125)
 texture = ExtResource("4_upago")
 
-[node name="YSortGroup" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="PlayerEviota" parent="YSortGroup" instance=ExtResource("2_0uhqw")]
-position = Vector2(464, 384)
-
-[node name="SharkSolutionBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("3_i16ob")]
-position = Vector2(1032, 136)
-interact_text = "Work at Shark Solution Corp"
-open_company_ui = NodePath("../../CanvasLayer/WorkUI/SharkSolutionUI")
-
-[node name="OctopusRestaurantBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("6_wluxn")]
-open_company_ui = NodePath("../../CanvasLayer/WorkUI/OctopusRestaurantUI")
-
-[node name="YourApartment" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("7_t4meo")]
-position = Vector2(264, 360)
-open_company_ui = NodePath("../../CanvasLayer/WorkUI/YourApartmentUI")
-
-[node name="University" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("8_w4ucs")]
-position = Vector2(280, -24)
-interact_text = "Go to universeaty"
-open_company_ui = NodePath("../../CanvasLayer/WorkUI/UniversityUI")
-
-[node name="Gym" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("9_04awf")]
-position = Vector2(560, 0)
-interact_text = "Go to gym"
-open_company_ui = NodePath("../../CanvasLayer/WorkUI/GymUI")
-
-[node name="EvilBarracuda" parent="YSortGroup" instance=ExtResource("10_yas0d")]
-position = Vector2(720, 440)
-stats = Array[int]([22, 14, 15, 12, 17])
-
-[node name="WorldBorder" type="StaticBody2D" parent="."]
+[node name="WorldBorderTopAndSide" type="StaticBody2D" parent="."]
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorderTopAndSide"]
 position = Vector2(-1056, 288)
 shape = SubResource("RectangleShape2D_nqsta")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBorder"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBorderTopAndSide"]
 position = Vector2(2272, 300)
 shape = SubResource("RectangleShape2D_nqsta")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBorder"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBorderTopAndSide"]
 position = Vector2(600, -480)
 shape = SubResource("RectangleShape2D_ufjok")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(600, 1064)
-shape = SubResource("RectangleShape2D_ufjok")
-
-[node name="Sprite2D3" type="Sprite2D" parent="WorldBorder"]
+[node name="Sprite2D3" type="Sprite2D" parent="WorldBorderTopAndSide"]
 texture_repeat = 2
 position = Vector2(488, -656)
 texture = ExtResource("3_np4vr")
 region_enabled = true
 region_rect = Rect2(0, 0, 5000, 390)
 
-[node name="Sprite2D4" type="Sprite2D" parent="WorldBorder"]
-texture_repeat = 2
-position = Vector2(520, 1040)
-texture = ExtResource("3_np4vr")
-region_enabled = true
-region_rect = Rect2(0, 0, 5000, 390)
-
-[node name="Sprite2D" type="Sprite2D" parent="WorldBorder"]
+[node name="Sprite2D" type="Sprite2D" parent="WorldBorderTopAndSide"]
 texture_repeat = 2
 position = Vector2(-1144, 248)
 texture = ExtResource("4_myd5i")
 region_enabled = true
 region_rect = Rect2(0, 0, 245, 3500)
 
-[node name="Sprite2D2" type="Sprite2D" parent="WorldBorder"]
+[node name="Sprite2D2" type="Sprite2D" parent="WorldBorderTopAndSide"]
 texture_repeat = 2
 position = Vector2(2368, 248)
 texture = ExtResource("4_myd5i")
 region_enabled = true
 region_rect = Rect2(0, 0, 245, 3500)
+
+[node name="YSortGroup" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PlayerEviota" parent="YSortGroup" instance=ExtResource("2_0uhqw")]
+position = Vector2(328, 584)
+
+[node name="SharkSolutionBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("3_i16ob")]
+position = Vector2(1304, 64)
+interact_text = "Work at Shark Solution Corp"
+open_company_ui = NodePath("../../CanvasLayer/WorkUI/SharkSolutionUI")
+
+[node name="OctopusRestaurantBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("6_wluxn")]
+position = Vector2(456, 416)
+open_company_ui = NodePath("../../CanvasLayer/WorkUI/OctopusRestaurantUI")
+
+[node name="YourApartment" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("7_t4meo")]
+position = Vector2(-16, 600)
+open_company_ui = NodePath("../../CanvasLayer/WorkUI/YourApartmentUI")
+
+[node name="University" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("8_w4ucs")]
+position = Vector2(304, -200)
+interact_text = "Go to universeaty"
+open_company_ui = NodePath("../../CanvasLayer/WorkUI/UniversityUI")
+
+[node name="Gym" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("9_04awf")]
+position = Vector2(872, 416)
+interact_text = "Go to gym"
+open_company_ui = NodePath("../../CanvasLayer/WorkUI/GymUI")
+
+[node name="Hospital" parent="YSortGroup" instance=ExtResource("10_v3uhw")]
+position = Vector2(856, -376)
+
+[node name="EvilBarracuda" parent="YSortGroup" instance=ExtResource("10_yas0d")]
+position = Vector2(-616, 176)
+flip_sprite = true
+stats = Array[int]([22, 14, 15, 12, 17])
+
+[node name="EvilBarracuda2" parent="YSortGroup" instance=ExtResource("10_yas0d")]
+position = Vector2(-792, 272)
+stats = Array[int]([22, 14, 15, 12, 17])
+
+[node name="EvilBarracuda3" parent="YSortGroup" instance=ExtResource("10_yas0d")]
+position = Vector2(-904, 472)
+flip_sprite = true
+stats = Array[int]([22, 14, 15, 12, 17])
+
+[node name="EvilBarracuda4" parent="YSortGroup" instance=ExtResource("10_yas0d")]
+position = Vector2(-672, 592)
+stats = Array[int]([22, 14, 15, 12, 17])
+
+[node name="WorldBorderBot" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBorderBot"]
+position = Vector2(600, -480)
+shape = SubResource("RectangleShape2D_ufjok")
+
+[node name="Sprite2D4" type="Sprite2D" parent="WorldBorderBot"]
+texture_repeat = 2
+position = Vector2(520, 1040)
+texture = ExtResource("3_np4vr")
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 390)
 
 [node name="WaterTop" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.243137)

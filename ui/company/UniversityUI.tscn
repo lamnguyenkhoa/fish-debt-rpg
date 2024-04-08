@@ -169,6 +169,7 @@ service_desc = "Increase INT by 1"
 service_cost = 0
 service_time_needed = 1
 company = NodePath("../..")
+service_stock = 10
 gain_stat = Array[int]([0, 1, 0, 0, 0])
 
 [node name="ServiceButton2" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_ghfed")]
@@ -178,6 +179,7 @@ service_desc = "Increase INT by 2"
 service_cost = 99
 service_time_needed = 1
 company = NodePath("../..")
+service_stock = 10
 gain_stat = Array[int]([0, 2, 0, 0, 0])
 
 [node name="ServiceButton3" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_ghfed")]
@@ -187,6 +189,7 @@ service_desc = "Increase INT by 5"
 service_cost = 329
 service_time_needed = 2
 company = NodePath("../..")
+service_stock = 10
 gain_stat = Array[int]([0, 5, 0, 0, 0])
 
 [node name="ServiceButton4" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_ghfed")]
@@ -196,6 +199,7 @@ service_desc = "Increase INT by 7"
 service_cost = 799
 service_time_needed = 2
 company = NodePath("../..")
+service_stock = 10
 gain_stat = Array[int]([0, 7, 0, 0, 0])
 
 [node name="ServiceButton5" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_ghfed")]
@@ -205,6 +209,7 @@ service_desc = "Increase HAR & YEE by 1"
 service_cost = 0
 service_time_needed = 1
 company = NodePath("../..")
+service_stock = 10
 gain_stat = Array[int]([0, 0, 0, 1, 1])
 
 [node name="ServiceButton6" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_ghfed")]
@@ -214,6 +219,7 @@ service_desc = "Increase HAR by 2"
 service_cost = 149
 service_time_needed = 1
 company = NodePath("../..")
+service_stock = 10
 gain_stat = Array[int]([0, 0, 0, 2, 0])
 
 [node name="ServiceButton7" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_ghfed")]
@@ -223,16 +229,18 @@ service_desc = "Increase HAR by 5"
 service_cost = 499
 service_time_needed = 2
 company = NodePath("../..")
+service_stock = 10
 gain_stat = Array[int]([0, 0, 0, 5, 0])
 
 [node name="ServiceButton8" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("6_ghfed")]
 layout_mode = 2
 service_name = "Take general course"
-service_desc = "Increase all stats by 3"
-service_cost = 2999
+service_desc = "Increase all stats by 7"
+service_cost = 3999
 service_time_needed = 6
 company = NodePath("../..")
-gain_stat = Array[int]([3, 3, 3, 3, 3])
+service_stock = 10
+gain_stat = Array[int]([7, 7, 7, 7, 7])
 
 [node name="LeaveButton" type="Button" parent="."]
 layout_mode = 0
