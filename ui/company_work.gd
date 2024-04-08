@@ -23,6 +23,9 @@ func _ready() -> void:
 	progress_label.text = "[center]{0} / {1}[/center]".format([current_xp, xp_per_level[current_reputation_level - 1]])
 	show_position_id_work(0)
 	refresh_promote_eligibility()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	GameManager.player.stat_changed.connect(refresh_promote_eligibility)
 
 func _input(event):
 	if event.is_action_pressed("leave_place") and visible:
@@ -30,6 +33,7 @@ func _input(event):
 
 func open_ui():
 	visible = true
+	refresh_promote_eligibility()
 	emit_signal("ui_opened")
 
 func close_ui():

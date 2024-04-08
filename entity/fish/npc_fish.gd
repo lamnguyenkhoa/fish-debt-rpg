@@ -58,10 +58,10 @@ func revive():
 func randomly_set_defeat_money():
 	match tier:
 		1:
-			defeat_money = randi_range(100, 500)
+			defeat_money = randi_range(300, 1000)
 		2:
-			defeat_money = randi_range(1000, 5000)
+			defeat_money = randi_range(5000, 20000)
 		3:
-			defeat_money = randi_range(10000, 50000)
+			defeat_money = randi_range(50000, 90000)
 		_:
 			defeat_money = randi_range(100, 500)

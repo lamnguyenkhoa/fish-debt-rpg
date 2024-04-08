@@ -17,33 +17,38 @@ var max_hp: int = BASE_HEALTH:
 	set(value):
 		max_hp = value
 		player_menu.inventory_menu.update_health_bar(current_hp, value)
-		emit_signal("stat_changed")
 var max_sp: int = BASE_STAMINA:
 	set(value):
 		max_sp = value
 		player_menu.inventory_menu.update_stamina_bar(current_sp, value)
-		emit_signal("stat_changed")
 var current_hp: int = BASE_HEALTH:
 	set(value):
 		current_hp = value
 		player_menu.inventory_menu.update_health_bar(value, max_hp)
-		emit_signal("stat_changed")
 var current_sp: int = BASE_STAMINA:
 	set(value):
 		current_sp = value
 		player_menu.inventory_menu.update_stamina_bar(value, max_sp)
-		emit_signal("stat_changed")
 var for_stat: int = 9: # Each point increase health and stamina by 5
 	set(value):
 		for_stat = value
 		recalculate_stat()
-var int_stat = 9
+var int_stat: int = 9:
+	set(value):
+		int_stat = value
+		recalculate_stat()
 var str_stat: int = 9:
 	set(value):
 		str_stat = value
 		recalculate_stat()
-var har_stat = 9
-var yee_stat = 9 # Each point increase movespeed by 2%
+var har_stat: int = 9:
+	set(value):
+		har_stat = value
+		recalculate_stat()
+var yee_stat: int = 9: # Each point increase movespeed by 2%
+	set(value):
+		yee_stat = value
+		recalculate_stat()
 var money: int = 100:
 	set(value):
 		if value < 0:
@@ -108,6 +113,7 @@ func _physics_process(_delta):
 func recalculate_stat():
 	max_hp = BASE_HEALTH + for_stat * 5
 	max_sp = BASE_STAMINA + for_stat * 5
+	emit_signal("stat_changed")
 
 func damaged(type: String, value: int, is_percentage_max: bool=false):
 	if type == "hp":

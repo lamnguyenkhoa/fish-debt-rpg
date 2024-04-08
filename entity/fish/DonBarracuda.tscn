@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://drivyomhbl11b"]
+[gd_scene load_steps=8 format=3 uid="uid://bkudip2s0vw0v"]
 
-[ext_resource type="Script" path="res://entity/fish/npc_fish.gd" id="1_0agm5"]
-[ext_resource type="Texture2D" uid="uid://c4ieqhuvrfx2n" path="res://asset/sprite/fish/barracuda.png" id="1_io65f"]
-[ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="2_dnehk"]
-[ext_resource type="Texture2D" uid="uid://5jgmgg00k63r" path="res://asset/sprite/ui/circle.png" id="4_08qln"]
+[ext_resource type="Script" path="res://entity/fish/npc_fish.gd" id="1_2fvi4"]
+[ext_resource type="Texture2D" uid="uid://c4ieqhuvrfx2n" path="res://asset/sprite/fish/barracuda.png" id="2_uagvs"]
+[ext_resource type="Texture2D" uid="uid://5jgmgg00k63r" path="res://asset/sprite/ui/circle.png" id="3_ok4pi"]
+[ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="4_d836u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jt33u"]
-size = Vector2(168, 16)
+size = Vector2(336, 40)
 
 [sub_resource type="Animation" id="Animation_h3qmf"]
 resource_name = "idle"
@@ -30,42 +30,43 @@ _data = {
 "idle": SubResource("Animation_h3qmf")
 }
 
-[node name="EvilBarracuda" type="CharacterBody2D"]
-script = ExtResource("1_0agm5")
-fish_name = "Evil Barracuda"
+[node name="DonBarracuda" type="CharacterBody2D"]
+script = ExtResource("1_2fvi4")
+fish_name = "Don Barracuda"
+tier = 3
 is_hostile = true
-max_hp = 100
-stats = Array[int]([10, 10, 10, 10, 10])
+max_hp = 600
+stats = Array[int]([45, 56, 42, 49, 39])
 
 [node name="Fish" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.435294, 0.423529, 1)
+modulate = Color(0.231373, 0.231373, 0.231373, 1)
 position = Vector2(0, -8)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_io65f")
+texture = ExtResource("2_uagvs")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.478431)
-position = Vector2(-8, 32)
-scale = Vector2(2.625, 0.25)
-texture = ExtResource("4_08qln")
+position = Vector2(-12, 32)
+scale = Vector2(5.125, 0.25)
+texture = ExtResource("3_ok4pi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, -8)
+position = Vector2(-16, -4)
 shape = SubResource("RectangleShape2D_jt33u")
 debug_color = Color(0.701961, 0.00392157, 0.0117647, 0.419608)
 
 [node name="NameLabel" type="Label" parent="."]
 z_index = 50
 offset_left = -128.0
-offset_top = -48.0
+offset_top = -72.0
 offset_right = 128.0
-offset_bottom = -16.0
+offset_bottom = -40.0
+theme_override_colors/font_color = Color(0.682353, 0, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("2_dnehk")
-theme_override_font_sizes/font_size = 12
-text = "Evil barracuda"
+theme_override_fonts/font = ExtResource("4_d836u")
+theme_override_font_sizes/font_size = 20
+text = "Don barracuda"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
