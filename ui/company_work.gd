@@ -44,7 +44,7 @@ func gain_xp(amount: int):
 	if current_reputation_level >= max_reputation_level:
 		return
 
-	current_xp += amount
+	current_xp = clampi(0, current_xp + amount, 99999)
 	if current_xp >= xp_per_level[current_reputation_level - 1]:
 		current_reputation_level += 1
 		current_xp = 0

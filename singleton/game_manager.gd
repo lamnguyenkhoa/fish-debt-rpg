@@ -29,12 +29,12 @@ func pass_time(time: int):
 	current_time = clampi(current_time + time, 0, 8)
 	emit_signal("time_passed")
 
-func move_to_next_day():
-	day_left -= 1
+func move_to_next_day(amount: int=1):
+	day_left -= amount
 	current_time = 0
 	emit_signal("time_passed")
 	emit_signal("day_passed")
-	if day_left == 0:
+	if day_left <= 0:
 		end_game(false)
 
 func load_item_database():
@@ -67,11 +67,33 @@ func open_npc_interact_ui(target_npc: NPCFish):
 	npc_interact_ui.open_ui(target_npc)
 
 func force_go_home_and_rest():
+	close_all_windows()
 	var respawn_pos = map_manager.player_apartment.get_node("RespawnSpot").global_position
 	player.global_position = respawn_pos
-	move_to_next_day()
-	player.recover("hp", 100, true)
-	player.recover("sp", 100, true)
+	move_to_next_day(2)
+	if day_left > 0:
+		player.recover("hp", 100, true)
+		player.recover("sp", 100, true)
+		GameManager.game_ui.notification_ui.notify_injured()
+
+func prison_smuggle():
+	print("SMUGG")
+	var random_num = randi() % 100
+	if random_num < 25:
+		sent_to_prison()
+	else:
+		player.money += 5000
+
+func sent_to_prison():
+	close_all_windows()
+	var respawn_pos = map_manager.prison.get_node("RespawnSpot").global_position
+	player.global_position = respawn_pos
+	move_to_next_day(3)
+	if day_left > 0:
+		player.recover("hp", 100, true)
+		player.recover("sp", 100, true)
+		player.money -= int(player.money * 0.2)
+		GameManager.game_ui.notification_ui.notify_caught()
 
 func pay_the_debt():
 	if player.money >= debt_money:
@@ -79,15 +101,18 @@ func pay_the_debt():
 		end_game(true)
 
 func end_game(is_win):
-	# Close all windows
-	player_menu.close_menu()
-	for child: CompanyWork in map_manager.work_ui.get_children():
-		child.close_ui()
+	close_all_windows()
 	if is_win:
 		map_manager.endgame_ui.open_win_screen()
 	else:
 		map_manager.endgame_ui.open_lose_screen()
 	GameManager.player.is_busy = true
+
+func close_all_windows():
+	player_menu.close_menu()
+	for child: CompanyWork in map_manager.work_ui.get_children():
+		child.close_ui()
+	game_ui.notification_ui.close_ui()
 
 func reset():
 	debt_money = 1000000

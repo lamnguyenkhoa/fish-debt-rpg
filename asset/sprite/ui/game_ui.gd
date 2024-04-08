@@ -4,6 +4,7 @@ class_name GameUI
 @onready var money_label: Label = $TopBanner/MoneyLabel
 @onready var day_label: RichTextLabel = $TopBanner/DayLabel
 @onready var time_dial: TextureProgressBar = $TopBanner/TimeDial
+@onready var notification_ui: NotificationUI = $NotificationUI
 
 func _ready() -> void:
 	GameManager.game_ui = self

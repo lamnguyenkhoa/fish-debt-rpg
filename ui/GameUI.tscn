@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://075cq1jo2r0u"]
+[gd_scene load_steps=8 format=3 uid="uid://075cq1jo2r0u"]
 
 [ext_resource type="Script" path="res://asset/sprite/ui/game_ui.gd" id="1_yatn0"]
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="2_reaai"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://coptx7061meoa" path="res://asset/sprite/ui/clock.png" id="4_nx8cp"]
 [ext_resource type="PackedScene" uid="uid://mf0qldclxjpr" path="res://ui/PlayerMenu.tscn" id="5_lvtvn"]
 [ext_resource type="PackedScene" uid="uid://dqxthbc3g0l2v" path="res://ui/NPCInteractUI.tscn" id="6_w1lfw"]
+[ext_resource type="Script" path="res://ui/notification_ui.gd" id="7_kxei4"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -98,6 +99,80 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="NotificationUI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -80.0
+offset_right = 168.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_kxei4")
+
+[node name="BG" type="ColorRect" parent="NotificationUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="Title" type="Label" parent="NotificationUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.0
+offset_top = 16.0
+offset_right = 149.0
+offset_bottom = 61.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_q7wdd")
+text = "You was caught commit crime"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Desc" type="Label" parent="NotificationUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -8.0
+offset_right = 149.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have to stay in prison for 3 days and lost 10% of your money"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="NotificationUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -40.0
+offset_right = 29.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_q7wdd")
+text = "Close"
+
 [node name="BotBanner" type="TextureRect" parent="."]
 self_modulate = Color(0, 0, 0, 0.360784)
 layout_mode = 1
@@ -123,3 +198,6 @@ offset_right = -75.0
 offset_bottom = 30.0
 grow_horizontal = 2
 text = "WASD: Move | Tab: Open menu | E: Interact"
+
+[connection signal="mouse_entered" from="NotificationUI/CloseButton" to="NotificationUI" method="_on_close_button_mouse_entered"]
+[connection signal="pressed" from="NotificationUI/CloseButton" to="NotificationUI" method="_on_close_button_pressed"]

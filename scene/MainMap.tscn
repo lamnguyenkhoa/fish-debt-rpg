@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c0xitnvds1848"]
+[gd_scene load_steps=36 format=3 uid="uid://c0xitnvds1848"]
 
 [ext_resource type="Texture2D" uid="uid://cts32tvdsnmfx" path="res://asset/sprite/building/sand.png" id="1_0tepv"]
 [ext_resource type="Script" path="res://scene/map_manager.gd" id="1_pelnp"]
@@ -19,12 +19,14 @@
 [ext_resource type="Shader" path="res://shader/windwalker_water.gdshader" id="10_bs6qu"]
 [ext_resource type="PackedScene" uid="uid://biqxju6alq3qq" path="res://entity/building/HospitalBuilding.tscn" id="10_v3uhw"]
 [ext_resource type="PackedScene" uid="uid://drivyomhbl11b" path="res://entity/fish/ThugBarracuda.tscn" id="10_yas0d"]
+[ext_resource type="PackedScene" uid="uid://da1yt70l2yuco" path="res://entity/building/PrisonBuilding.tscn" id="13_i5esd"]
 [ext_resource type="PackedScene" uid="uid://dln8xnjttyagr" path="res://entity/fish/BossBarracuda.tscn" id="15_qjv23"]
 [ext_resource type="PackedScene" uid="uid://r1ah7gujb1lr" path="res://ui/company/YourApartmentVisit.tscn" id="15_xrgbd"]
 [ext_resource type="PackedScene" uid="uid://bkudip2s0vw0v" path="res://entity/fish/DonBarracuda.tscn" id="16_llj84"]
 [ext_resource type="PackedScene" uid="uid://bvjvtbcoje0qb" path="res://ui/company/UniversityUI.tscn" id="17_q7i15"]
 [ext_resource type="PackedScene" uid="uid://cjyppyoi6jmhg" path="res://ui/company/GymUI.tscn" id="19_e0jw8"]
 [ext_resource type="PackedScene" uid="uid://bdb5te3l6q8ky" path="res://ui/company/HospitalUI.tscn" id="22_lt8vf"]
+[ext_resource type="PackedScene" uid="uid://bob03cyiaxrcu" path="res://ui/company/PrisonUI.tscn" id="23_n0m50"]
 [ext_resource type="PackedScene" uid="uid://y0c66svnd50g" path="res://ui/EndgameUI.tscn" id="24_g7740"]
 [ext_resource type="AudioStream" uid="uid://bu831bljee4u8" path="res://asset/bgm/OMORI OST - 102 Room for 4.ogg" id="27_k807w"]
 
@@ -58,9 +60,10 @@ shader_parameter/distortion_speed = 1.0
 shader_parameter/tile = Vector2(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 
-[node name="MainMap" type="Node2D" node_paths=PackedStringArray("player_apartment", "work_ui", "endgame_ui")]
+[node name="MainMap" type="Node2D" node_paths=PackedStringArray("player_apartment", "prison", "work_ui", "endgame_ui")]
 script = ExtResource("1_pelnp")
 player_apartment = NodePath("YSortGroup/YourApartment")
+prison = NodePath("YSortGroup/Prison")
 work_ui = NodePath("CanvasLayer/WorkUI")
 endgame_ui = NodePath("CanvasLayer/EndgameUI")
 
@@ -117,7 +120,7 @@ region_rect = Rect2(0, 0, 245, 3500)
 y_sort_enabled = true
 
 [node name="PlayerEviota" parent="YSortGroup" instance=ExtResource("2_0uhqw")]
-position = Vector2(328, 584)
+position = Vector2(224, 704)
 
 [node name="SharkSolutionBuilding" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("3_i16ob")]
 position = Vector2(1304, 64)
@@ -141,6 +144,10 @@ open_company_ui = NodePath("../../CanvasLayer/WorkUI/UniversityUI")
 position = Vector2(1168, 416)
 interact_text = "Go to gym"
 open_company_ui = NodePath("../../CanvasLayer/WorkUI/GymUI")
+
+[node name="Prison" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("13_i5esd")]
+position = Vector2(-640, -440)
+open_company_ui = NodePath("../../CanvasLayer/WorkUI/PrisonUI")
 
 [node name="Hospital" parent="YSortGroup" node_paths=PackedStringArray("open_company_ui") instance=ExtResource("10_v3uhw")]
 position = Vector2(856, -376)
@@ -222,6 +229,10 @@ visible = false
 layout_mode = 1
 
 [node name="OctopusRestaurantUI" parent="CanvasLayer/WorkUI" instance=ExtResource("10_475j1")]
+visible = false
+layout_mode = 1
+
+[node name="PrisonUI" parent="CanvasLayer/WorkUI" instance=ExtResource("23_n0m50")]
 visible = false
 layout_mode = 1
 

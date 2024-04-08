@@ -35,7 +35,7 @@ script = ExtResource("1_sgqrp")
 fish_name = "Boss Barracuda"
 tier = 2
 is_hostile = true
-max_hp = 400
+max_hp = 350
 stats = Array[int]([32, 24, 30, 23, 29])
 defeat_loot = Array[int]([2003, 2001])
 

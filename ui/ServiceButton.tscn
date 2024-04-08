@@ -6,7 +6,6 @@
 [node name="ServiceButton" type="HBoxContainer"]
 script = ExtResource("1_3fg44")
 limited_stock = null
-service_stock = null
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2

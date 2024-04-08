@@ -62,10 +62,12 @@ func update_service_status():
 		button.disabled = true
 
 func _on_button_pressed():
+	GameManager.pass_time(service_time_needed)
+	company.gain_xp(reputation_xp)
+	GameManager.player.money -= service_cost
 	if limited_stock:
 		current_service_stock -= 1
 	SoundManager.play_button_click_sfx()
-	GameManager.player.money -= service_cost
 	if give_item_id != EnumAutoload.ItemId.NONE:
 		GameManager.player.acquired_item(give_item_id, give_item_amount)
 	if special_case != EnumAutoload.ServiceSpecialCase.NONE:
@@ -79,12 +81,13 @@ func _on_button_pressed():
 	GameManager.player.str_stat += gain_stat[2]
 	GameManager.player.har_stat += gain_stat[3]
 	GameManager.player.yee_stat += gain_stat[4]
-	GameManager.pass_time(service_time_needed)
 
 func resolve_special_case(_special_case: EnumAutoload.ServiceSpecialCase):
 	match _special_case:
 		EnumAutoload.ServiceSpecialCase.NEXT_DAY:
 			GameManager.move_to_next_day()
+		EnumAutoload.ServiceSpecialCase.SMUGGLE:
+			GameManager.prison_smuggle()
 		EnumAutoload.ServiceSpecialCase.PAY_DEBT:
 			GameManager.pay_the_debt()
 			visible = false
