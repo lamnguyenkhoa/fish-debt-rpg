@@ -30,7 +30,7 @@ func interact(_player: Player):
 	GameManager.open_npc_interact_ui(self)
 
 func get_interact_text(_player: Player) -> String:
-	return "Interact"
+	return "Interact with {0}".format([fish_name])
 
 func damaged(value: int, is_percentage_max: bool=false):
 	if is_percentage_max:

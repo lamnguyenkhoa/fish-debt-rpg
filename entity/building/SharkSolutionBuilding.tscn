@@ -13,7 +13,7 @@ shader_parameter/x_buffer = 2.0
 shader_parameter/y_buffer = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_valto"]
-size = Vector2(296, 224)
+size = Vector2(296, 143.5)
 
 [node name="SharkSolutionBuilding" type="StaticBody2D"]
 script = ExtResource("1_mo2oc")
@@ -24,6 +24,6 @@ position = Vector2(0, -112.5)
 texture = ExtResource("2_jq1gu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, -56.5)
+position = Vector2(-4, -16.25)
 shape = SubResource("RectangleShape2D_valto")
 debug_color = Color(0.701961, 0, 0.0745098, 0.419608)

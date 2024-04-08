@@ -5,6 +5,7 @@ var interest_rate = 1.05
 var day_left = 20
 var current_time = 0 # from 0 to 8, 8 unit of time
 var item_database_dict: Dictionary = {}
+var debt_paid = false
 
 var player: Player
 var player_menu: PlayerMenu
@@ -36,7 +37,7 @@ func move_to_next_day(amount: int=1):
 	emit_signal("day_passed")
 	close_all_windows()
 	GameManager.game_ui.play_day_transition()
-	if day_left <= 0:
+	if day_left <= 0 and not debt_paid:
 		end_game(false)
 
 func load_item_database():
@@ -99,6 +100,7 @@ func sent_to_prison():
 func pay_the_debt():
 	if player.money >= debt_money:
 		player.money -= debt_money
+		debt_paid = true
 		end_game(true)
 
 func end_game(is_win):
@@ -106,6 +108,12 @@ func end_game(is_win):
 	if is_win:
 		map_manager.endgame_ui.open_win_screen()
 	else:
+		# Automatically pay if enough money, last chance
+		if player.money >= debt_money:
+			player.money -= debt_money
+			debt_paid = true
+			map_manager.endgame_ui.open_win_screen()
+			return
 		map_manager.endgame_ui.open_lose_screen()
 	GameManager.player.is_busy = true
 
@@ -119,4 +127,5 @@ func reset():
 	debt_money = 1000000
 	interest_rate = 1.05
 	day_left = 20
-	current_time = 0 # from 0 to 8, 8 unit of time
+	current_time = 0
+	debt_paid = false

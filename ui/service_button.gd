@@ -52,6 +52,8 @@ func _ready() -> void:
 func update_service_status():
 	button.disabled = false
 	button.text = service_name
+	if special_case == EnumAutoload.ServiceSpecialCase.PAY_DEBT and GameManager.debt_paid:
+		visible = false
 	if limited_stock and special_case != EnumAutoload.ServiceSpecialCase.PAY_DEBT:
 		button.text = "{0} ({1} left)".format([service_name, current_service_stock])
 	if limited_stock and current_service_stock <= 0:

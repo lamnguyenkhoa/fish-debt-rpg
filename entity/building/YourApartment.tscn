@@ -20,7 +20,7 @@ size = Vector2(270, 86)
 
 [node name="RedApartment" type="StaticBody2D"]
 script = ExtResource("1_jurqn")
-interact_text = "Go to your apartment"
+interact_text = "Return to your apartment"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jua5p")

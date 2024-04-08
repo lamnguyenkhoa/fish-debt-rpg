@@ -13,6 +13,7 @@ enum ItemId {
     # FOOD
     FRIED_RICE = 1000,
     OCTO_BENTO = 1001,
+    CHURCH_MEAL = 1002,
     # MEDICAL
     BANDAID = 2000,
     FIRST_AID_KIT = 2001,
