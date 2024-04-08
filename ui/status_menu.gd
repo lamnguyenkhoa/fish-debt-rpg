@@ -41,13 +41,13 @@ func update_stamina_bar(current_sp, max_sp):
 	stamina_bar.value = current_sp
 
 func _on_for_label_mouse_entered() -> void:
-	stat_desc.text = "Fortitude.\n\nIndicate fish's resistance, both mentally and physically."
+	stat_desc.text = "Fortitude.\n\nIndicate fish's resistance, both mentally and physically. Increase max health and stamina"
 
 func _on_int_label_mouse_entered() -> void:
-	stat_desc.text = "Intelligent.\n\nIndicate fish's smartness. Smart fish make more money with white-gill jobs and solve puzzles easier."
+	stat_desc.text = "Intelligent.\n\nIndicate fish's smartness. Smart fish can make more money with white-gill jobs and solve puzzles easier."
 
 func _on_str_label_mouse_entered() -> void:
-	stat_desc.text = "Strength.\n\nIndicate fish's physical prowess. Strong fish make more money with blue-gill jobs and attack other fishes more effective."
+	stat_desc.text = "Strength.\n\nIndicate fish's physical prowess. Strong fish can make more money with blue-gill jobs and attack other fishes more effective."
 
 func _on_har_label_mouse_entered() -> void:
 	stat_desc.text = "Harmony.\n\nIndicate fish's flexibility and adaptability. Harmonic fish is charismatic fish. Also it's easier for fish to blend into the environment."

@@ -21,9 +21,9 @@ func _on_button_mouse_entered() -> void:
 
 func _on_button_pressed() -> void:
 	SoundManager.play_button_click_sfx()
-
 	if item_data.type == EnumAutoload.ItemType.CONSUMABLE:
 		GameManager.player.lost_item(item_data.item_id, 1)
+	resolve_item_effect(item_data)
 
 func resolve_item_effect(_item_data: ItemResource):
 	GameManager.player.recover("hp", _item_data.recover_hp, false)

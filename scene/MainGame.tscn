@@ -96,6 +96,7 @@ open_company_ui = NodePath("../../CanvasLayer/WorkUI/GymUI")
 
 [node name="EvilBarracuda" parent="YSortGroup" instance=ExtResource("10_yas0d")]
 position = Vector2(720, 440)
+stats = Array[int]([22, 14, 15, 12, 17])
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 collision_mask = 7

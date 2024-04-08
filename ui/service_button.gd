@@ -8,8 +8,10 @@ class_name ServiceButton
 @export var service_time_needed: int = 0
 @export var reputation_xp: int = 0
 @export var company: CompanyWork
+@export var limited_stock = false
+@export var service_stock: int = 10
 
-# Service given
+@export_group("Service effect")
 @export var give_item_id: EnumAutoload.ItemId = EnumAutoload.ItemId.NONE
 @export var give_item_amount: int = 1
 @export var recover_hp: int = 0
@@ -24,6 +26,8 @@ class_name ServiceButton
 
 func _ready() -> void:
 	button.text = service_name
+	if limited_stock:
+		button.text = "{0} ({1} left)".format([service_name, service_stock])
 	label.text = service_desc
 	if service_cost > 0:
 		label.text = "{0}$, ".format([service_cost]) + label.text
@@ -38,12 +42,19 @@ func _ready() -> void:
 
 func update_service_status():
 	button.disabled = false
+	button.text = service_name
+	if limited_stock:
+		button.text = "{0} ({1} left)".format([service_name, service_stock])
+	if limited_stock and service_stock <= 0:
+		button.disabled = true
 	if GameManager.player.money < service_cost:
 		button.disabled = true
 	if GameManager.get_time_left() < service_time_needed:
 		button.disabled = true
 
 func _on_button_pressed():
+	if limited_stock:
+		service_stock -= 1
 	SoundManager.play_button_click_sfx()
 	GameManager.player.money -= service_cost
 	if give_item_id != EnumAutoload.ItemId.NONE:

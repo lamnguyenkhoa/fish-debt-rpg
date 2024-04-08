@@ -238,24 +238,30 @@ service_desc = "Fully restore stamina"
 service_cost = 200
 reputation_xp = 15
 company = NodePath("../..")
+limited_stock = false
+service_stock = 10
 recover_hp_percentage = 100
 
 [node name="ServiceButton2" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("7_w13ys")]
 layout_mode = 2
-service_name = "Takeaway 1"
+service_name = "Takeaway A"
 service_desc = "Buy Octo-bento"
 service_cost = 100
 reputation_xp = 10
 company = NodePath("../..")
+limited_stock = true
+service_stock = 10
 give_item_id = 1001
 
 [node name="ServiceButton3" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("7_w13ys")]
 layout_mode = 2
-service_name = "Takeaway 2"
+service_name = "Takeaway B"
 service_desc = "Buy Fried rice"
 service_cost = 50
 reputation_xp = 5
 company = NodePath("../..")
+limited_stock = true
+service_stock = 15
 give_item_id = 1000
 
 [node name="LeaveButton" type="Button" parent="."]

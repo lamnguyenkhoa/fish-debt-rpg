@@ -11,23 +11,28 @@ const BASE_STAMINA = 50
 
 signal money_changed
 signal inventory_changed
+signal stat_changed
 
 var max_hp: int = BASE_HEALTH:
 	set(value):
 		max_hp = value
 		player_menu.status_menu.update_health_bar(current_hp, value)
+		emit_signal("stat_changed")
 var max_sp: int = BASE_STAMINA:
 	set(value):
 		max_sp = value
 		player_menu.status_menu.update_stamina_bar(current_sp, value)
+		emit_signal("stat_changed")
 var current_hp: int = BASE_HEALTH:
 	set(value):
 		current_hp = value
 		player_menu.status_menu.update_health_bar(value, max_hp)
+		emit_signal("stat_changed")
 var current_sp: int = BASE_STAMINA:
 	set(value):
 		current_sp = value
 		player_menu.status_menu.update_stamina_bar(value, max_sp)
+		emit_signal("stat_changed")
 var for_stat: int = 10: # Each point increase health and stamina by 5
 	set(value):
 		for_stat = value

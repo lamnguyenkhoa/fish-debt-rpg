@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtxmmajk5ntsw"]
+[gd_scene load_steps=10 format=3 uid="uid://dtxmmajk5ntsw"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_av2pu"]
 [ext_resource type="Texture2D" uid="uid://ur6c6neynl5g" path="res://asset/sprite/fish/sign_eviota.png" id="2_doo28"]
 [ext_resource type="Texture2D" uid="uid://5jgmgg00k63r" path="res://asset/sprite/ui/circle.png" id="2_ewljf"]
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="4_vvdyi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nntff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_katn5"]
 size = Vector2(400, 120)
@@ -45,6 +47,7 @@ scale = Vector2(1.375, 0.125)
 texture = ExtResource("2_ewljf")
 
 [node name="FishSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_nntff")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_doo28")
 
