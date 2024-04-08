@@ -59,6 +59,8 @@ func _on_leave_button_pressed() -> void:
 	close_ui()
 
 func show_position_id_work(id: int):
+	if id >= job_box.get_child_count():
+		return
 	for child in job_box.get_children():
 		child.visible = false
 	job_box.get_child(id).visible = true

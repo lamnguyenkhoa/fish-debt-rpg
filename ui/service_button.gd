@@ -5,6 +5,7 @@ class_name ServiceButton
 @export var service_name: String = "Buy item"
 @export var service_desc: String = "Buy item desc"
 @export var service_cost: int = 10
+@export var service_time_needed: int = 0
 @export var reputation_xp: int = 0
 @export var company: CompanyWork
 
@@ -15,17 +16,20 @@ class_name ServiceButton
 @export var recover_sp: int = 0
 @export var recover_hp_percentage: int = 0
 @export var recover_sp_percentage: int = 0
+@export var gain_stat: Array[int] = [0, 0, 0, 0, 0]
 @export var special_case: EnumAutoload.ServiceSpecialCase
 
 @onready var button: Button = $Button
 @onready var label: Label = $Label
 
 func _ready() -> void:
-	if service_cost > 0:
-		button.text = "{0} ({1}$)".format([service_name, service_cost])
-	else:
-		button.text = "{0}".format([service_name])
+	button.text = service_name
 	label.text = service_desc
+	if service_cost > 0:
+		label.text = "{0}$, ".format([service_cost]) + label.text
+	if service_time_needed > 0:
+		label.text = "{0} period(s), ".format([service_time_needed]) + label.text
+
 	if not Engine.is_editor_hint():
 		update_service_status()
 		company.ui_opened.connect(update_service_status)
@@ -35,6 +39,8 @@ func _ready() -> void:
 func update_service_status():
 	button.disabled = false
 	if GameManager.player.money < service_cost:
+		button.disabled = true
+	if GameManager.get_time_left() < service_time_needed:
 		button.disabled = true
 
 func _on_button_pressed():
@@ -48,6 +54,12 @@ func _on_button_pressed():
 	GameManager.player.recover("hp", recover_hp_percentage, true)
 	GameManager.player.recover("sp", recover_sp, false)
 	GameManager.player.recover("sp", recover_sp_percentage, true)
+	GameManager.player.for_stat += gain_stat[0]
+	GameManager.player.int_stat += gain_stat[1]
+	GameManager.player.str_stat += gain_stat[2]
+	GameManager.player.har_stat += gain_stat[3]
+	GameManager.player.yee_stat += gain_stat[4]
+	GameManager.pass_time(service_time_needed)
 
 func resolve_special_case(_special_case: EnumAutoload.ServiceSpecialCase):
 	match _special_case:

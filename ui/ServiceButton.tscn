@@ -9,8 +9,8 @@ script = ExtResource("1_3fg44")
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_h81km")
-theme_override_font_sizes/font_size = 25
-text = "Buy item (10$)"
+theme_override_font_sizes/font_size = 22
+text = "Buy item"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
@@ -19,7 +19,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Buy item desc"
+text = "10$, Buy item desc"
 
 [connection signal="mouse_entered" from="Button" to="." method="play_button_hover_sfx"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

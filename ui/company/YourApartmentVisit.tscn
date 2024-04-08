@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://r1ah7gujb1lr"]
+[gd_scene load_steps=6 format=3 uid="uid://r1ah7gujb1lr"]
 
 [ext_resource type="FontFile" uid="uid://sj6nlgwd3wm0" path="res://asset/font/AquinoDemo-511lj.ttf" id="1_ghfl1"]
 [ext_resource type="Script" path="res://ui/company_work.gd" id="1_t12u5"]
 [ext_resource type="Texture2D" uid="uid://dpalq260oi3ma" path="res://asset/sprite/building/your_apartment.png" id="3_cmtek"]
 [ext_resource type="Texture2D" uid="uid://p73ulmivegfh" path="res://asset/sprite/ui/square.png" id="4_48gwd"]
-[ext_resource type="PackedScene" uid="uid://ccta77b8vbyr1" path="res://ui/WorkButton.tscn" id="5_dg34p"]
 [ext_resource type="PackedScene" uid="uid://6rq61wi1af6k" path="res://ui/ServiceButton.tscn" id="6_johfd"]
 
 [node name="YourApartmentUI" type="Control"]
@@ -130,13 +129,6 @@ offset_top = 272.0
 offset_right = 640.0
 offset_bottom = 331.0
 theme_override_constants/separation = 15
-
-[node name="WorkButton" parent="JobBox" node_paths=PackedStringArray("company") instance=ExtResource("5_dg34p")]
-layout_mode = 2
-job_name = "Janitor"
-job_pay = 25
-reputation_xp = 5
-company = NodePath("../..")
 
 [node name="PromoteButton" type="Button" parent="."]
 visible = false
