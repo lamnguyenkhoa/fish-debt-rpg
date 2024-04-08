@@ -24,14 +24,15 @@ hinting=1
 subpixel_positioning=1
 oversampling=0.0
 Fallbacks=null
-fallbacks=[]
+fallbacks=[Resource("res://asset/font/white-ocean.white-ocean.ttf"), Resource("res://asset/font/NotoSans-VariableFont_wdth,wght.ttf")]
 Compress=null
 compress=true
 preload=[{
 "chars": [],
 "glyphs": [],
 "name": "New Configuration",
-"size": Vector2i(16, 0)
+"size": Vector2i(16, 0),
+"variation_embolden": 0.0
 }]
 language_support={}
 script_support={}

@@ -50,6 +50,8 @@ func load_item_database():
 	var file_name = dir.get_next()
 
 	while file_name != "":
+		file_name = file_name.replace('.import', '')
+		file_name = file_name.replace('.remap', '')
 		if file_name.ends_with(".tres"):
 			# Load each resource file using ResourceLoader
 			var resource_path = directory_path + file_name
