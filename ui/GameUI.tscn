@@ -262,6 +262,7 @@ offset_bottom = 332.0
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "- Use [color=yellow]WASD[/color] to [wave]move around[/wave].
+- Use [color=yellow]Tab[/color] to open inventory menu.
 - When near something interactable, press [color=yellow]E[/color] to interact.
 - A day is divided in [color=yellow]8 periods[/color]. Works and some actions take time.
 - Some jobs need higher stat to work or promote.

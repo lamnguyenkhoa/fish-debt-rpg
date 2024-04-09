@@ -153,14 +153,14 @@ func attempt_to_steal():
 	if random_num < steal_chance:
 		target_npc.steal_awareness += 1
 		var stolen_item = target_npc.roll_steal_loot()
+		var stolen_money = target_npc.steal_money()
 		if stolen_item != EnumAutoload.ItemId.NONE:
 			steal_label.text = "[center]Steal chance: [color=yellow]{0}%[/color]\nReceived [color=green]{1}$[/color]\nReceived [color=green]{2}[/color][/center]".format(
-				[target_npc.calculate_steal_success_chance(), int(target_npc.defeat_money), GameManager.item_database_dict[stolen_item].name])
+				[target_npc.calculate_steal_success_chance(), int(stolen_money), GameManager.item_database_dict[stolen_item].name])
 			GameManager.player.acquired_item(stolen_item, 1)
 		else:
 			steal_label.text = "[center]Steal chance: [color=yellow]{0}%[/color]\nReceived [color=green]{1}$[/color][/center]".format(
-				[target_npc.calculate_steal_success_chance(), int(target_npc.defeat_money)])
-		target_npc.steal_money()
+				[target_npc.calculate_steal_success_chance(), int(stolen_money)])
 	else:
 		GameManager.sent_to_prison()
 

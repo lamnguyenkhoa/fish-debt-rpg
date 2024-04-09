@@ -68,10 +68,12 @@ func calculate_steal_success_chance() -> int:
 	steal_chance = clampi(steal_chance, 0, 100)
 	return steal_chance
 
-func steal_money():
-	var steal_amount = int(defeat_money * 0.1)
+func steal_money() -> int:
+	# You steal half of their current money
+	var steal_amount = int(defeat_money * 0.5)
 	defeat_money = clampi(defeat_money - steal_amount, 0, 99999999)
 	GameManager.player.money += steal_amount
+	return steal_amount
 
 func roll_steal_loot() -> EnumAutoload.ItemId:
 	if len(possible_steal_loot) == 0:
