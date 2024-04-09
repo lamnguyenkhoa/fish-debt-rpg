@@ -98,11 +98,9 @@ func sent_to_prison():
 		player.money -= int(player.money * 0.2)
 		GameManager.game_ui.notification_ui.notify_caught()
 
-func pay_the_debt():
-	if player.money >= debt_money:
-		player.money -= debt_money
-		debt_paid = true
-		end_game(true)
+func paid_the_debt():
+	debt_paid = true
+	end_game(true)
 
 func end_game(is_win):
 	close_all_windows()
@@ -110,7 +108,7 @@ func end_game(is_win):
 		map_manager.endgame_ui.open_win_screen()
 	else:
 		# Automatically pay if enough money, last chance
-		if player.money >= debt_money:
+		if not debt_paid and player.money >= debt_money:
 			player.money -= debt_money
 			debt_paid = true
 			map_manager.endgame_ui.open_win_screen()

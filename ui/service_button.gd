@@ -91,7 +91,7 @@ func resolve_special_case(_special_case: EnumAutoload.ServiceSpecialCase):
 		EnumAutoload.ServiceSpecialCase.SMUGGLE:
 			GameManager.prison_smuggle()
 		EnumAutoload.ServiceSpecialCase.PAY_DEBT:
-			GameManager.pay_the_debt()
+			GameManager.paid_the_debt()
 			visible = false
 
 func play_button_hover_sfx():
