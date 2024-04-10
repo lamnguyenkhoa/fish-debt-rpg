@@ -12,3 +12,4 @@
 - [x] Some SFX
 - [x] Some BGM
 - [x] Setting menu
+- [ ] 2nd path: Defeat devil to not pay

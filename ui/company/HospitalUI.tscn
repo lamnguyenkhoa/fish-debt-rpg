@@ -223,20 +223,20 @@ give_item_id = 2002
 [node name="ServiceButton6" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("5_1ec23")]
 layout_mode = 2
 service_name = "Fin Enhancement"
-service_desc = "Increase YEE by 8"
-service_cost = 5099
+service_desc = "Increase YEE by 14"
+service_cost = 7099
 service_time_needed = 4
 company = NodePath("../..")
-gain_stat = Array[int]([0, 0, 0, 0, 8])
+gain_stat = Array[int]([0, 0, 0, 0, 14])
 
 [node name="ServiceButton7" parent="ServiceBox" node_paths=PackedStringArray("company") instance=ExtResource("5_1ec23")]
 layout_mode = 2
 service_name = "Body Enhancement"
-service_desc = "Increase FOR by 10"
+service_desc = "Increase FOR by 22"
 service_cost = 12999
 service_time_needed = 5
 company = NodePath("../..")
-gain_stat = Array[int]([10, 0, 0, 0, 0])
+gain_stat = Array[int]([22, 0, 0, 0, 0])
 
 [node name="LeaveButton" type="Button" parent="."]
 layout_mode = 0
